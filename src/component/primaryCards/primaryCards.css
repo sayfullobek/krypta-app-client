@@ -1,0 +1,52 @@
+.borderjon {
+    width: 80%;
+    height: 6vh;
+    border-radius: 50%;
+    background-color: rgba(110, 111, 118, 0.22);
+    font-size: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: sans-serif;
+}
+
+.boxs {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: black;
+    text-decoration: none;
+}
+
+.boxs:focus {
+    color: black;
+    text-decoration: none;
+}
+
+.boxs h6 {
+    margin-top: 10px;
+    font-size: 10px;
+    font-weight: bold;
+    font-family: sans-serif;
+    text-align: center;
+}
+
+body {
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+#full {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+
+.a{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
