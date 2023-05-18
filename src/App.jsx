@@ -12,6 +12,10 @@ import {Assets} from "./pages/user/Assets";
 import {Me} from "./pages/user/Me";
 import {Gildirak} from "./component/gildirak/Gildirak";
 import {Login} from "./pages/auth/Login";
+import {Profile} from "./pages/user/Profile";
+import {FeedBack} from "./pages/user/FeedBack";
+import {SecuritySettings} from "./pages/user/SecuritySettings";
+import {WithDrawal} from "./pages/user/WithDrawal";
 
 function App() {
     return (
@@ -30,7 +34,11 @@ function App() {
                         <Route path={"/auth/register"} element={<Register/>}/>
                         <Route path={"/auth/register/user-info"} element={<UserInfo/>}/>
                         <Route path={"/auth/login"} element={<Login/>}/>
+                        <Route path={"/auth/profile"} element={<Profile/>}/>
                         <Route path={"/gildirak"} element={<Gildirak/>}/>
+                        <Route path={"/auth/feedback"} element={<FeedBack/>}/>
+                        <Route path={"/auth/security-settings"} element={<SecuritySettings/>}/>
+                        <Route path={"/auth/withdrawal-address"} element={<WithDrawal/>}/>
                     </Route>
                     <Route path={"*"} element={<NotFoundPages/>}/>
                 </Routes>

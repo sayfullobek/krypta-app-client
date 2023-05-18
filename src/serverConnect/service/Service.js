@@ -15,6 +15,10 @@
 // }
 //
 import toast from "react-hot-toast";
+import {isSuccess} from "../../handlers/auth";
+import {ApiController} from "../ApiController";
+import {Apis} from "../Apis";
+import {error} from "../../utils/MyToast";
 
 export const Save = async (data, url, id, navigate, navigateUrl) => {
     try {
@@ -24,12 +28,14 @@ export const Save = async (data, url, id, navigate, navigateUrl) => {
         } else {
             res = await ApiController.doPut(id, url, data)
         }
+        console.log(res)
         if (isSuccess(res.status)) {
             toast.success(res.data.message)
-            navigate(`/auth/krypta-valyuta/admin/${navigateUrl}`)
+            navigate(navigateUrl)
             localStorage.setItem("__coin_photoId__", "")
         }
     } catch (err) {
+        console.log(err)
         toast.error(err.response.data.message)
     }
 }
@@ -80,11 +86,6 @@ export const deleteService = async (id, url, navigate, navigateName, setModal, g
     }
 }
 
-
-import {isSuccess} from "../../handlers/auth";
-import {ApiController} from "../ApiController";
-import {Apis} from "../Apis";
-import {error} from "../../utils/MyToast";
 
 export const SendPhoto = async (data) => {
     try {

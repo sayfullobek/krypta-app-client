@@ -3,6 +3,7 @@ export const Apis = {
     login: '/auth/login',
     register: '/auth/register',
     regSecond: '/auth/update',
+    changePassword: '/auth/password-change',
     uploadPhoto: '/auth/photoUpload',
     //end auth
     sendPhoto: '/attachment/upload',
@@ -11,5 +12,6 @@ export const Apis = {
 
     coin: '/coin',
     pools: '/pools',
-    vips: '/vips'
+    vips: '/vips',
+    feedback: '/feedback'
 }

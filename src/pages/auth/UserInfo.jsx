@@ -18,7 +18,7 @@ export const UserInfo = () => {
         const data = {
             firstName, lastName, gander
         }
-        await RegisterSecond(localStorage.getItem("id"), data, navigate)
+        await RegisterSecond(localStorage.getItem("__id__"), data, navigate)
     }
 
     return (
