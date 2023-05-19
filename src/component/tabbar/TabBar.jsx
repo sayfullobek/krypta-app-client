@@ -17,7 +17,7 @@ export const TabBar = () => {
 
     return (
         <div>
-            <header className="header" id="header">
+            <header className="header p-2" id="header">
                 <nav className="nav container">
                     {pathName === "/me" ? (
                         <div/>

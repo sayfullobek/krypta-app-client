@@ -13,7 +13,7 @@ export const Profile = () => {
             <div className={"p-3 mt-3 w-100 d-flex align-items-center justify-content-between"}
                  style={{backgroundColor: 'white'}}>
                 <div>ism</div>
-                <input className={"text-secondary"} style={{outline: 'none', border: 'none'}} type="text"
+                <input className={"text-secondary text-end"} style={{outline: 'none', border: 'none'}} type="text"
                        value={name}
                        onChange={e => setName(e.target.value)}/>
             </div>
@@ -39,13 +39,13 @@ export const Profile = () => {
             <div className={"p-3 w-100 d-flex align-items-center justify-content-between"}
                  style={{backgroundColor: 'white'}}>
                 <div>tel raqam</div>
-                <input className={"text-secondary"} style={{outline: 'none', border: 'none'}} type="text"
+                <input className={"text-secondary text-end"} style={{outline: 'none', border: 'none'}} type="text"
                        value={phoneNumber.substr(4, 2) + "****" + phoneNumber.substr(10)}/>
             </div>
             <div className={"p-3 w-100 d-flex align-items-center justify-content-between"}
                  style={{backgroundColor: 'white'}}>
                 <div>email</div>
-                <input className={"text-secondary"} style={{outline: 'none', border: 'none'}} type="text"
+                <input className={"text-secondary text-end"} style={{outline: 'none', border: 'none'}} type="text"
                        value={email}/>
             </div>
             <button className={"btn btn-primary w-75 mt-4"}>Saqlash</button>

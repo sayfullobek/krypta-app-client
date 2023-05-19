@@ -16,8 +16,28 @@ import {Profile} from "./pages/user/Profile";
 import {FeedBack} from "./pages/user/FeedBack";
 import {SecuritySettings} from "./pages/user/SecuritySettings";
 import {WithDrawal} from "./pages/user/WithDrawal";
+import {SwitchLanguage} from "./pages/user/SwitchLanguage";
+import {AddWithDrawalAddress} from "./pages/user/AddWithDrawalAddress";
+import {NowPay} from "./pages/user/NowPay";
+import {PayPhoto} from "./pages/user/PayPhoto";
+import {useEffect, useState} from "react";
+import {getOneAbout} from "./serverConnect/service/Service";
+import {Apis} from "./serverConnect/Apis";
+import {NowRelease} from "./pages/user/NowRelease";
+import {InviteFriends} from "./pages/user/InviteFriends";
 
 function App() {
+    const id = localStorage.getItem("__id__")
+    const [user, setUser] = useState({})
+    useEffect(() => {
+        const getMe = async () => {
+            try {
+                setUser(await getOneAbout(Apis.getMe, id, "data"))
+            } catch (err) {
+            }
+        }
+        getMe()
+    }, [])
     return (
         <>
             <BrowserRouter>
@@ -38,7 +58,17 @@ function App() {
                         <Route path={"/gildirak"} element={<Gildirak/>}/>
                         <Route path={"/auth/feedback"} element={<FeedBack/>}/>
                         <Route path={"/auth/security-settings"} element={<SecuritySettings/>}/>
-                        <Route path={"/auth/withdrawal-address"} element={<WithDrawal/>}/>
+                        <Route path={"/auth/withdrawal-address"}
+                               element={<WithDrawal user={user} status={"address"}/>}/>
+                        <Route path={"/auth/switch-languages"} element={<SwitchLanguage/>}/>
+                        <Route path={"/auth/save-address"} element={<AddWithDrawalAddress status={"address"}/>}/>
+                        <Route path={"/auth/now-pay"} element={<NowPay/>}/>
+                        <Route path={"/auth/now-pay/pay-photo"} element={<PayPhoto/>}/>
+                        <Route path={"/auth/release-now"} element={<WithDrawal user={user} status={"pay"}/>}/>
+                        <Route path={"/auth/release-now/now-release"}
+                               element={<NowRelease user={user}/>}/>
+                        <Route path={"/auth/pay/save-address"} element={<AddWithDrawalAddress status={"pay"}/>}/>
+                        <Route path={"/auth/invite-friends"} element={<InviteFriends user={user}/>}/>
                     </Route>
                     <Route path={"*"} element={<NotFoundPages/>}/>
                 </Routes>

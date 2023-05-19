@@ -1,7 +1,9 @@
 import {PrimaryCards} from "../../component/primaryCards/PrimaryCards";
 import {CoinsList} from "../../component/primaryCards/CoinsList";
 import {AboutApp} from "../../component/primaryCards/AboutApp";
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
+import {embeddedGet} from "../../serverConnect/service/Service";
+import {Apis} from "../../serverConnect/Apis";
 
 
 export const UserPanel = () => {
@@ -25,6 +27,16 @@ export const UserPanel = () => {
         width: '100%',
         height: '30px',
     }
+    const [loading, setLoading] = useState(false)
+    const [coin, setCoins] = useState([])
+
+    const getAll = async () => {
+        try {
+            await embeddedGet(Apis.coin, setCoins, "data")
+            setLoading(true)
+        } catch (err) {
+        }
+    }
     useEffect(() => {
         const getJar = () => {
             setTimeout(() => {
@@ -34,6 +46,7 @@ export const UserPanel = () => {
             }, 1000)
         }
         getJar()
+        getAll()
     }, [])
 
 
@@ -61,7 +74,7 @@ export const UserPanel = () => {
             </div>
             <br/>
             <PrimaryCards/>
-            <CoinsList status={"panel"}/>
+            <CoinsList status={"panel"} coin={coin}/>
             <AboutApp/>
             <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet"/>
 

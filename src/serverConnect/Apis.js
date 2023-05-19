@@ -5,13 +5,15 @@ export const Apis = {
     regSecond: '/auth/update',
     changePassword: '/auth/password-change',
     uploadPhoto: '/auth/photoUpload',
+    getMe: "/auth/get-me",
     //end auth
     sendPhoto: '/attachment/upload',
     deletePhoto: '/attachment',
-    getPhoto: 'https://krypta-server.herokuapp.com/api/v1/attachment/download?id=',
+    getPhoto: 'http://localhost:8080/api/v1/attachment/download?id=',
 
     coin: '/coin',
     pools: '/pools',
     vips: '/vips',
-    feedback: '/feedback'
+    feedback: '/feedback',
+    withdrawal: '/withdrawal',
 }

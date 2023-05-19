@@ -24,7 +24,6 @@ export const Me = () => {
             type: "auto",
             isHidden: true
         },
-        {name: 'Verified', icon: 'bi bi-person-check', link: "/verified", type: "auto", isHidden: !!token},
         {
             name: 'Contact customer service',
             icon: 'bi bi-headset',
@@ -41,7 +40,7 @@ export const Me = () => {
         },
         {type: "none", isHidden: true},
         {name: 'Feedback', icon: 'bi bi-envelope-open', link: "/auth/feedback", type: "auto", isHidden: !!token},
-        {name: 'Switch Language', icon: 'bi bi-translate', link: "/switch-lan", type: "auto", isHidden: true},
+        {name: 'Switch Language', icon: 'bi bi-translate', link: "/auth/switch-languages", type: "auto", isHidden: true},
         {name: 'Help', icon: 'bi bi-question-circle', link: "/help", type: "auto", isHidden: true},
         {name: 'About us', icon: 'bi bi-info-circle', link: "/about-us", type: "auto", isHidden: true},
         {name: 'Clear the cache', icon: 'fas fa-broom', type: "auto", functions: clearCache, isHidden: true},

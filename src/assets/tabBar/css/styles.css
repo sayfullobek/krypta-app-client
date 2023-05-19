@@ -97,6 +97,7 @@ img {
     background-color: var(--container-color);
     z-index: var(--z-fixed);
     transition: .4s;
+    height: 7vh;
 }
 
 /*=============== NAV ===============*/

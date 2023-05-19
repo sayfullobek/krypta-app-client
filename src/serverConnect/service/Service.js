@@ -18,7 +18,7 @@ import toast from "react-hot-toast";
 import {isSuccess} from "../../handlers/auth";
 import {ApiController} from "../ApiController";
 import {Apis} from "../Apis";
-import {error} from "../../utils/MyToast";
+import {error, success} from "../../utils/MyToast";
 
 export const Save = async (data, url, id, navigate, navigateUrl) => {
     try {
@@ -50,6 +50,16 @@ export const GetPhoto = async (id, setPhoto) => {
     }
 }
 
+
+export const getWithdrawal = async (url, status) => {
+    try {
+        const res = await ApiController.doGet(url)
+        return res.data
+    } catch (err) {
+    }
+}
+
+
 export const embeddedGet = async (url, setData, status) => {
     try {
         const res = await ApiController.doGet(url)
@@ -62,13 +72,13 @@ export const embeddedGet = async (url, setData, status) => {
     }
 }
 
-export const getOneAbout = async (url, id, setData, status) => {
+export const getOneAbout = async (url, id, status) => {
     try {
         const res = await ApiController.doGetOne(id, url)
         if (status === "data") {
-            setData(res.data)
+            return res.data
         } else if (status === "embedded") {
-            setData(res.data._embedded)
+            return res.data._embedded
         }
     } catch (err) {
     }
@@ -86,11 +96,13 @@ export const deleteService = async (id, url, navigate, navigateName, setModal, g
     }
 }
 
-
 export const SendPhoto = async (data) => {
     try {
         const res = await ApiController.doPost(Apis.sendPhoto, data)
-        localStorage.setItem("__coin_photoId__", res.data)
+        if (isSuccess(res.status)) {
+            localStorage.setItem("__pay_photo__", res.data)
+            window.location.reload()
+        }
     } catch (err) {
         error("xatolik")
     }

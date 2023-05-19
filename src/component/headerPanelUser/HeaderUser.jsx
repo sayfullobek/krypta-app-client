@@ -3,8 +3,8 @@ import React from "react";
 
 export const HeaderUser = ({text, link}) => {
     return (
-        <div>
-            <div className={"col p-3 w-100 d-flex"}>
+        <div className={"w-100 d-flex align-items-center justify-content-center"} style={{height: '7vh'}}>
+            <div className={"col p-3 w-25 d-flex"}>
                 <Link to={link}>
                     <svg xmlns="http://www.w3.org/2000/svg"
                          viewBox="0 0 320 512" style={{width: '18px'}}>
@@ -13,8 +13,8 @@ export const HeaderUser = ({text, link}) => {
                     </svg>
                 </Link>
             </div>
-            <div className="col w-100 text-center">
-                <h4>{text}</h4>
+            <div style={{position: 'absolute', top: '2vh'}}>
+                <h6 className={"text-center text-dark fw-bold"}>{text}</h6>
             </div>
         </div>
     )
