@@ -49,7 +49,7 @@ export const InviteFriends = ({user}) => {
                  style={{width: '96%', height: '25%'}}>
                 <div className="w-100 d-flex mb-3">
                     <input type="text" className={"form-control w-75"} id="copyReferral"
-                           value={token ? "localhost:5173/auth/register?referralCode=" + user.referralCode : ""}/>
+                           value={token ? "https://main--incredible-maamoul-f59b93.netlify.app/auth/register?referralCode=" + user.referralCode : ""}/>
                     <div id="output"/>
                     <Button color={"primary w-25"} style={{fontSize: '10px'}} onClick={() => copyToClipboard()}>nusxa
                         olish</Button>
