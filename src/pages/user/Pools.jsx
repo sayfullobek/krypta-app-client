@@ -2,10 +2,11 @@ import {useEffect, useState} from "react";
 import {embeddedGet} from "../../serverConnect/service/Service";
 import {Apis} from "../../serverConnect/Apis";
 import {Loader} from "../../component/Loader";
+import {useNavigate} from "react-router-dom";
 
 export const Pools = () => {
     const globe = "https://github.blog/wp-content/uploads/2020/12/102573561-8e872300-40a3-11eb-9feb-b480aeae0564.png?resize=1024%2C513"
-
+    const navigate = useNavigate()
     const [pools, setPools] = useState([])
     const [loading, setLoading] = useState(false)
 
@@ -29,10 +30,14 @@ export const Pools = () => {
         backgroundColor: 'white'
     }
 
+    const getOne = (id) => {
+        navigate(`/pool/item/${id}`)
+    }
+
     return (
         <>
             {loading ? (
-                <div style={{width: '98%', padding: '0 0 0 4%', backgroundColor: 'white'}} className={"p-3"}>
+                <div style={{width: '100%', padding: '0 0 0 4%', backgroundColor: 'white'}} className={"p-3"}>
                     <div className="card text-bg-dark">
                         <img src={globe} className="card-img" alt="1"/>
                         <div className="card-img-overlay">
@@ -50,7 +55,7 @@ export const Pools = () => {
                     </div>
                     <div className="row d-flex align-items-center justify-content-center flex-column">
                         {pools.map(item => (
-                            <div style={card} className={"p-2 mt-2 mb-2"}>
+                            <div onClick={() => getOne(item.id)} style={card} className={"p-2 mt-2 mb-2"}>
                                 <div className="d-flex">
                                     <img style={{borderRadius: '50%', width: '14%', height: '80%', margin: '1% 0'}}
                                          src={Apis.getPhoto + item.photoId}

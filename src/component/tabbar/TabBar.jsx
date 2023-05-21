@@ -1,8 +1,7 @@
 import '../../assets/tabBar/js/main'
 import '../../assets/tabBar/scss/styles.scss'
 import {Link, useLocation, useNavigate} from "react-router-dom";
-import photo from '../../assets/logo.jpg'
-import {useEffect} from "react";
+import photo from '../../assets/alfa-logo.jpg'
 
 export const TabBar = () => {
     const pathName = useLocation().pathname

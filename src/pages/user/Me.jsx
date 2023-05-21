@@ -3,7 +3,7 @@ import React from "react";
 import {HeaderMe} from "../../component/meComponent/HeaderMe";
 import {success} from "../../utils/MyToast";
 
-export const Me = () => {
+export const Me = ({user}) => {
     const globe1 = "https://media.sketchfab.com/models/cb636fdd7f124125a3b7d194da9942e1/thumbnails/3acf153eed654d31932803efcf37ea34/05fb0bf23df844bebb8710f1814bde20.jpeg"
     const token = localStorage.getItem("token")
 
@@ -56,7 +56,7 @@ export const Me = () => {
 
     return (
         <div style={{width: '98%', padding: '0 0 0 4%', backgroundColor: '#fffefe6b'}} className={"p-2"}>
-            <HeaderMe token={token}/>
+            <HeaderMe token={token} user={user}/>
             <div style={{backgroundColor: 'white'}}>
                 <div className={"w-100 text-primary text-center pb-2"}
                      style={{fontSize: '30px', borderBottom: '1px solid #e7dfdf78'}}>

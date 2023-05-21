@@ -25,6 +25,11 @@ import {getOneAbout} from "./serverConnect/service/Service";
 import {Apis} from "./serverConnect/Apis";
 import {NowRelease} from "./pages/user/NowRelease";
 import {InviteFriends} from "./pages/user/InviteFriends";
+import {Message} from "./pages/user/Message";
+import {PoolItem} from "./pages/user/PoolItem";
+import {GetOneMessage} from "./pages/user/GetOneMessage";
+import {Help} from "./pages/user/Help";
+import {InvestUser} from "./pages/user/InvestUser";
 
 function App() {
     const id = localStorage.getItem("__id__")
@@ -47,10 +52,14 @@ function App() {
                         <Route path={"/pool"} element={<Pools/>}/>
                         <Route path={"/amount"} element={<Amount/>}/>
                         <Route path={"/assets"} element={<Assets/>}/>
-                        <Route path={"/me"} element={<Me/>}/>
+                        <Route path={"/me"} element={<Me user={user}/>}/>
                     </Route>
                     <Route element={<MenyuLayout/>}>
                         <Route path={"/notification"} element={<Notification/>}/>
+                        <Route path={"/notification/messages/:id"} element={<Message/>}/>
+                        <Route path={"/notification/messages/:id/get-message/:messageId"} element={<GetOneMessage/>}/>
+                        <Route path={"/pool/item/:id"} element={<PoolItem/>}/>
+                        <Route path={"/pool/item/:id/:invId"} element={<InvestUser user={user}/>}/>
                         <Route path={"/auth/register"} element={<Register/>}/>
                         <Route path={"/auth/register/user-info"} element={<UserInfo/>}/>
                         <Route path={"/auth/login"} element={<Login/>}/>
@@ -69,6 +78,7 @@ function App() {
                                element={<NowRelease user={user}/>}/>
                         <Route path={"/auth/pay/save-address"} element={<AddWithDrawalAddress status={"pay"}/>}/>
                         <Route path={"/auth/invite-friends"} element={<InviteFriends user={user}/>}/>
+                        <Route path={"/help"} element={<Help/>}/>
                     </Route>
                     <Route path={"*"} element={<NotFoundPages/>}/>
                 </Routes>

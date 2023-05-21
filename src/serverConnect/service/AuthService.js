@@ -63,4 +63,5 @@ const saveLocalStorage = (res, navigate, status) => {
     localStorage.setItem('referralCode', status === "login" ? res.data.user.referralCode : res.data.getLogin.user.referralCode)
     success('muvaffaqiyatli')
     navigate(status === "login" ? "/me" : "/auth/register/user-info")
+    window.location.reload()
 }

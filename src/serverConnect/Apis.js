@@ -1,3 +1,6 @@
+import logo from '../assets/alfa-coin.jpg'
+
+export const PrimaryImg = {logo}
 export const Apis = {
     //start auth
     login: '/auth/login',
@@ -13,7 +16,13 @@ export const Apis = {
 
     coin: '/coin',
     pools: '/pools',
+    getInvest: '/pools/inv/pool',
+    invest: '/pools/inv',
     vips: '/vips',
     feedback: '/feedback',
     withdrawal: '/withdrawal',
+    notification: '/notification',
+    message: '/notification/message',
+    getOneMessage: '/notification/message/one',
+
 }

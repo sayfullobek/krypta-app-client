@@ -12,5 +12,6 @@
     <orderEntry type="library" name="bootstrap-combined.no-icons" level="application" />
     <orderEntry type="library" name="jquery" level="application" />
     <orderEntry type="library" name="animate.css" level="application" />
+    <orderEntry type="library" name="line" level="application" />
   </component>
 </module>

@@ -4,6 +4,8 @@ import {AboutApp} from "../../component/primaryCards/AboutApp";
 import React, {useEffect, useState} from "react";
 import {embeddedGet} from "../../serverConnect/service/Service";
 import {Apis} from "../../serverConnect/Apis";
+import {Carusel} from "../../component/Carusel";
+import {PrimaryModal} from "../../component/primaryModal/PrimaryModal";
 
 
 export const UserPanel = () => {
@@ -52,17 +54,19 @@ export const UserPanel = () => {
 
     return (
         <div className={"p-2"}>
-            <div className="card text-bg-dark">
-                <img src={globe1} className="card-img" alt="1"/>
-                <div className="card-img-overlay">
-                    <h5 className="card-title text-light">METAGO Staking hovuzi</h5>
-                    <p className="card-text">Staking osonroq</p>
-                    <p className="card-text"><small className={"text-success"}>Osonlik bilan soqqa qiling okalar</small>
-                    </p>
-                </div>
-            </div>
+            <PrimaryModal/>
+            {/*<div className="card text-bg-dark">*/}
+            {/*    <img src={globe1} className="card-img" alt="1"/>*/}
+            {/*    <div className="card-img-overlay">*/}
+            {/*        <h5 className="card-title text-light">METAGO Staking hovuzi</h5>*/}
+            {/*        <p className="card-text">Staking osonroq</p>*/}
+            {/*        <p className="card-text"><small className={"text-success"}>Osonlik bilan soqqa qiling okalar</small>*/}
+            {/*        </p>*/}
+            {/*    </div>*/}
+            {/*</div>*/}
+            <Carusel/>
             <br/>
-            <p className={"text-center bg-light"}>salom qozi</p>
+            <p className={"text-center bg-light"}>Assalomu aleykum bizning platformamizga hush kelibsiz</p>
             <div className="card text-bg-dark">
                 <img src={globe2} className="card-img" alt="1"/>
                 <div className="card-img-overlay">
