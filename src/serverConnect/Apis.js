@@ -12,7 +12,8 @@ export const Apis = {
     //end auth
     sendPhoto: '/attachment/upload',
     deletePhoto: '/attachment',
-    getPhoto: 'http://localhost/api/v1/attachment/download?id=',
+//     getPhoto: 'http://localhost/api/v1/attachment/download?id=',
+    getPhoto: 'https://main--incredible-maamoul-f59b93.netlify.app/api/v1/attachment/download?id=',
     coin: '/coin',
     pools: '/pools',
     getInvest: '/pools/inv/pool',
