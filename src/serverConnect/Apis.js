@@ -12,8 +12,7 @@ export const Apis = {
     //end auth
     sendPhoto: '/attachment/upload',
     deletePhoto: '/attachment',
-    getPhoto: 'https://krypta-server.herokuapp.com/api/v1/attachment/download?id=',
-
+    getPhoto: 'http://localhost/api/v1/attachment/download?id=',
     coin: '/coin',
     pools: '/pools',
     getInvest: '/pools/inv/pool',
@@ -24,5 +23,6 @@ export const Apis = {
     notification: '/notification',
     message: '/notification/message',
     getOneMessage: '/notification/message/one',
+    archivePay: '/archive-pay',
 
 }

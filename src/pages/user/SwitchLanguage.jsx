@@ -13,6 +13,7 @@ export const SwitchLanguage = () => {
     const changeLan = (lan) => {
         localStorage.setItem("__lan__", lan)
         navigate("/me")
+        window.location.reload()
     }
     return (
         <div className={"d-flex align-items-center justify-content-between flex-column"} style={{height: '84vh'}}>

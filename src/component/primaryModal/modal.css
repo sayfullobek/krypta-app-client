@@ -90,7 +90,7 @@ header span {
     font-weight: 600;
 }
 
-header .close, .icons a {
+header .closes, .icons a {
     display: flex;
     align-items: center;
     border-radius: 50%;
@@ -98,16 +98,24 @@ header .close, .icons a {
     transition: all 0.3s ease-in-out;
 }
 
-header .close {
+.closejon {
+    width: 100%;
+    height: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+header .closes {
     color: #878787;
-    font-size: 17px;
     background: #f2f3fb;
     height: 33px;
     width: 33px;
     cursor: pointer;
+    font-weight: bold;
 }
 
-header .close:hover {
+header .closes:hover {
     background: #ebedf9;
 }
 

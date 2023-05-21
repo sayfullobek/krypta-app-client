@@ -33,6 +33,7 @@ export const RegisterSecond = async (id, data, navigate) => {
 export const RegisterHandler = async (data, navigate) => {
     try {
         const res = await ApiController.doPost(Apis.register, data)
+        console.log(res)
         if (isSuccess(res.status)) {
             saveLocalStorage(res, navigate, "register")
         }

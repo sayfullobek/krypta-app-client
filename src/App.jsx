@@ -32,12 +32,17 @@ import {Help} from "./pages/user/Help";
 import {InvestUser} from "./pages/user/InvestUser";
 
 function App() {
+    const lan = localStorage.getItem("__lan__")
     const id = localStorage.getItem("__id__")
     const [user, setUser] = useState({})
+    const [wallet, setWallet] = useState({})
+    const [loading, setLoading] = useState(false)
     useEffect(() => {
         const getMe = async () => {
             try {
                 setUser(await getOneAbout(Apis.getMe, id, "data"))
+                setLoading(true)
+
             } catch (err) {
             }
         }
@@ -50,9 +55,9 @@ function App() {
                     <Route path={"/"} element={<UserLayout/>}>
                         <Route index element={<UserPanel/>}/>
                         <Route path={"/pool"} element={<Pools/>}/>
-                        <Route path={"/amount"} element={<Amount/>}/>
+                        <Route path={"/amount"} element={<Amount user={user}/>}/>
                         <Route path={"/assets"} element={<Assets/>}/>
-                        <Route path={"/me"} element={<Me user={user}/>}/>
+                        <Route path={"/me"} element={<Me lan={lan} user={user} loading={loading}/>}/>
                     </Route>
                     <Route element={<MenyuLayout/>}>
                         <Route path={"/notification"} element={<Notification/>}/>
@@ -60,11 +65,11 @@ function App() {
                         <Route path={"/notification/messages/:id/get-message/:messageId"} element={<GetOneMessage/>}/>
                         <Route path={"/pool/item/:id"} element={<PoolItem/>}/>
                         <Route path={"/pool/item/:id/:invId"} element={<InvestUser user={user}/>}/>
-                        <Route path={"/auth/register"} element={<Register/>}/>
+                        <Route path={"/auth/register"} element={<Register lan={lan}/>}/>
                         <Route path={"/auth/register/user-info"} element={<UserInfo/>}/>
                         <Route path={"/auth/login"} element={<Login/>}/>
                         <Route path={"/auth/profile"} element={<Profile/>}/>
-                        <Route path={"/gildirak"} element={<Gildirak/>}/>
+                        <Route path={"/lucky-jet"} element={<Gildirak/>}/>
                         <Route path={"/auth/feedback"} element={<FeedBack/>}/>
                         <Route path={"/auth/security-settings"} element={<SecuritySettings/>}/>
                         <Route path={"/auth/withdrawal-address"}
@@ -72,7 +77,7 @@ function App() {
                         <Route path={"/auth/switch-languages"} element={<SwitchLanguage/>}/>
                         <Route path={"/auth/save-address"} element={<AddWithDrawalAddress status={"address"}/>}/>
                         <Route path={"/auth/now-pay"} element={<NowPay/>}/>
-                        <Route path={"/auth/now-pay/pay-photo"} element={<PayPhoto/>}/>
+                        <Route path={"/auth/now-pay/pay-photo"} element={<PayPhoto user={user}/>}/>
                         <Route path={"/auth/release-now"} element={<WithDrawal user={user} status={"pay"}/>}/>
                         <Route path={"/auth/release-now/now-release"}
                                element={<NowRelease user={user}/>}/>

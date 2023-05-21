@@ -1,10 +1,10 @@
 import {useNavigate} from "react-router-dom";
-import {deleteService, SendPhoto} from "../../serverConnect/service/Service";
+import {deleteService, Save, SendPhoto} from "../../serverConnect/service/Service";
 import {Apis} from "../../serverConnect/Apis";
 import {Button} from "reactstrap";
 import {success} from "../../utils/MyToast";
 
-export const PayPhoto = () => {
+export const PayPhoto = ({user}) => {
     const photoId = localStorage.getItem('__pay_photo__')
 
     const navigate = useNavigate()
@@ -21,9 +21,15 @@ export const PayPhoto = () => {
             await deleteService(photoId, Apis.deletePhoto, navigate, "/")
         }
     }
-    const backMenyu = () => {
+    const backMenyu = async () => {
+        let userId = user.id;
+        const data = {
+            userId: userId,
+            photoId: photoId
+        }
+        console.log(data)
+        await Save(data, Apis.archivePay, "", navigate, "/")
         localStorage.setItem("__pay_photo__", "")
-        navigate("/")
         success("sizga 1soat ichida pul tashlab beriladi")
     }
     return (

@@ -1,7 +1,6 @@
 import "react-multi-carousel/lib/styles.css";
-import logo from '../assets/alfa-coin.jpg'
+import logo from '../assets/primary banner.jpg'
 import Carousel from "react-multi-carousel";
-import Image from "react-multi-carousel/dev/components/image";
 import './myPhoto.css'
 
 export const Carusel = () => {
@@ -31,9 +30,6 @@ export const Carusel = () => {
                 <div>
                     <img src={logo} alt=""/>
                     <div className={"div"}/>
-                </div>
-                <div>
-                    <img src={logo} alt=""/>
                 </div>
             </Carousel>
         </div>

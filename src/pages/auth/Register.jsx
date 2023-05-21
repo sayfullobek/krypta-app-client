@@ -1,13 +1,13 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import '../../assets/auth.scss'
 import {Button, Modal, ModalBody, ModalFooter} from "reactstrap";
 import {Link, useLocation, useNavigate} from 'react-router-dom'
 import {RegisterHandler} from "../../serverConnect/service/AuthService";
-import {isAuthenticated, stringDataIf} from "../../handlers/auth";
+import {stringDataIf} from "../../handlers/auth";
 import '../../assets/authstyle'
-import {error, success} from "../../utils/MyToast";
+import {error} from "../../utils/MyToast";
 
-export const Register = () => {
+export const Register = (lan) => {
     const [open, setOpen] = useState(false);
     const [focusAfterClose, setFocusAfterClose] = useState(true);
     const navigate = useNavigate()
@@ -73,7 +73,7 @@ export const Register = () => {
             <section className="container forms" style={{height: '80vh'}}>
                 <div className="form login">
                     <div className="form-content">
-                        <header>Ro'yxatdan o'tish</header>
+                        <header>{lan === "UZB" ? "Ro'yxatdan o'tish" : lan === "ENG" ? "Sign up" : "Зарегистрироваться"}</header>
                         <form>
                             <div className="d-flex align-items-center justify-content-center">
                                 <button type={"button"} onClick={() => setUserName("phone")}
@@ -85,28 +85,34 @@ export const Register = () => {
                             </div>
                             {username === "phone" ? (
                                 <div className="field input-field">
-                                    <input type="number" placeholder="Telefon raqamingizni kiriting" className="input"
+                                    <input type="number"
+                                           placeholder={lan === "UZB" ? 'Telefon raqamingizni kiriting' : lan === "ENG" ? "Enter your phone number" : "Введите свой номер телефона"}
                                            value={phoneNumber} onChange={e => setPhoneNumber(e.target.value)}/>
                                 </div>
                             ) : (
                                 <div className="field input-field">
-                                    <input type="email" placeholder="Emailingizni kiriting" className="input"
+                                    <input type="email"
+                                           placeholder={lan === "UZB" ? "Emailingizni kiriting" : lan === "ENG" ? "Enter your email" : "Введите адрес электронной почты"}
+                                           className="input"
                                            value={email} onChange={e => setEmail(e.target.value)}/>
                                 </div>
                             )}
                             <div className="field input-field">
                                 {linkReferral.length !== 0 ? (
-                                    <input type="text" placeholder="referral kod"
+                                    <input type="text"
+                                           placeholder={lan === "UZB" ? 'referral kod' : lan === "ENG" ? "referral code" : "Промо-код"}
                                            value={linkReferral}
                                            className="input"/>
                                 ) : (
-                                    <input type="text" placeholder="referral kod"
+                                    <input type="text"
+                                           placeholder={lan === "UZB" ? 'referral kod' : lan === "ENG" ? "referral code" : "Промо-код'"}
                                            value={referralCode}
                                            className="input" onChange={e => setReferralCode(e.target.value)}/>
                                 )}
                             </div>
                             <div className="field input-field">
-                                <input type={seeCode ? "text" : "password"} placeholder="Parolingizni kiriting"
+                                <input type={seeCode ? "text" : "password"}
+                                       placeholder={lan === "UZB" ? 'Parolingizni kiriting' : lan === "ENG" ? "Enter your password" : "Введите ваш пароль"}
                                        className="password" value={password}
                                        onChange={e => setPassword(e.target.value)}/>
                                 <i className={seeCode ? "bi bi-eye eye-icon" : 'bi bi-eye-slash eye-icon'}
@@ -114,7 +120,7 @@ export const Register = () => {
                             </div>
                             <div className="field input-field">
                                 <input type={seePreCode ? "text" : "password"}
-                                       placeholder="Parolni tasdiqlash uchun qayta kiriting"
+                                       placeholder={lan === "UZB" ? 'Parolni tasdiqlash uchun qayta kiriting' : lan === "ENG" ? "Re-enter the password to confirm" : "Повторно введите пароль для подтверждения"}
                                        className={"password"} value={prePassword}
                                        onChange={e => setPrePassword(e.target.value)}
                                 />
@@ -122,13 +128,13 @@ export const Register = () => {
                                    onClick={() => setSeePreCode(!seePreCode)}/>
                             </div>
                             <div className="form-link">
-                                <Link to={"/auth/login"} className="forgot-pass">kirish</Link>
+                                <Link to={"/auth/login"}
+                                      className="forgot-pass">{lan === "UZB" ? 'kirish' : lan === "ENG" ? "Login" : "доступ"}</Link>
                             </div>
                             <div className="field button-field">
                                 <button type={"button"}
                                         className={referralCode.length === 0 ? "btn btn-primary disabled" : "btn btn-primary text-light"}
-                                        onClick={() => registerHandler()}>ro'yxatdan
-                                    o'tish
+                                        onClick={() => registerHandler()}>{lan === "UZB" ? "Ro'yxatdan O'tish" : lan === "ENG" ? "Sign up" : "Зарегистрироваться"}
                                 </button>
                             </div>
                         </form>
@@ -137,7 +143,7 @@ export const Register = () => {
             </section>
             <Modal returnFocusAfterClose={focusAfterClose} isOpen={open}>
                 <ModalBody>
-                    <p>bizning hizmatimizga rozimisiz?</p>
+                    <p>{}</p>
                     <label className="form-check-label" htmlFor="agree">
                         <input className="form-check-input" style={{marginRight: '10px'}} type="checkbox" value=""
                                id="agree" onClick={() => iAgree()} defaultChecked={agree} checked={agree}/>

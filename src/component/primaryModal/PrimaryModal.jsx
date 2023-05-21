@@ -32,26 +32,16 @@ export const PrimaryModal = () => {
             <div id="popup" className={"popup show"}>
                 <header>
                     <span>E'lon</span>
-                    <div id="close" className={"close"} onClick={() => closeOnclick()}><i className="uil uil-times"/>
-                    </div>
                 </header>
                 <div className="content">
                     <p>e'lon</p>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias consequatur dicta distinctio
                         dolore doloremque dolores eius enim error expedita fugit nostrum, nulla officia pariatur quis
                         quo sit tempore voluptate voluptatum.</p>
-                    {/*<ul className="icons">*/}
-                    {/*    <a href="#"><i className="fab fa-facebook-f"/></a>*/}
-                    {/*    <a href="#"><i className="fab fa-twitter"/></a>*/}
-                    {/*    <a href="#"><i className="fab fa-instagram"/></a>*/}
-                    {/*    <a href="#"><i className="fab fa-whatsapp"/></a>*/}
-                    {/*    <a href="#"><i className="fab fa-telegram-plane"/></a>*/}
-                    {/*</ul>*/}
-                    <p>Or copy link</p>
-                    <div id="field" className={"field"}>
-                        <i className="url-icon uil uil-link"/>
-                        <input id={"input"} className={"input"} type="text" readOnly value="example.com/share-link"/>
-                        <button onClick={() => copyOnclick()} id={"button"}>Copy</button>
+                </div>
+                <div className={"closejon"}>
+                    <div id="close" className={"closes"} onClick={() => closeOnclick()}>
+                        <i className="uil uil-times" style={{fontSize:'28px'}}/>
                     </div>
                 </div>
             </div>

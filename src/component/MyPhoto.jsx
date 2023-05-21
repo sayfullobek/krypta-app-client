@@ -1,5 +1,5 @@
 import './myPhoto.css'
-import logo from '../assets/logo.jpg'
+import logo from '../assets/alfa-logo.jpg'
 import {useState} from "react";
 import {uploadPhotoId} from "../serverConnect/service/AuthService";
 
