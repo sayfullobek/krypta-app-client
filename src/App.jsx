@@ -10,7 +10,6 @@ import {Pools} from "./pages/user/Pools";
 import {Amount} from "./pages/user/Amount";
 import {Assets} from "./pages/user/Assets";
 import {Me} from "./pages/user/Me";
-import {Gildirak} from "./component/gildirak/Gildirak";
 import {Login} from "./pages/auth/Login";
 import {Profile} from "./pages/user/Profile";
 import {FeedBack} from "./pages/user/FeedBack";
@@ -75,7 +74,7 @@ function App() {
                         <Route path={"/auth/register/user-info"} element={<UserInfo/>}/>
                         <Route path={"/auth/login"} element={<Login/>}/>
                         <Route path={"/auth/profile"} element={<Profile/>}/>
-                        <Route path={"/lucky-jet"} element={<Gildirak/>}/>
+                        {/*<Route path={"/lucky-jet"} element={<Gildirak/>}/>*/}
                         <Route path={"/auth/feedback"} element={<FeedBack/>}/>
                         <Route path={"/auth/security-settings"} element={<SecuritySettings/>}/>
                         <Route path={"/auth/withdrawal-address"}
