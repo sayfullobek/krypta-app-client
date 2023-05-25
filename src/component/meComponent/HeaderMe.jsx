@@ -3,7 +3,7 @@ import './copy'
 import {success} from "../../utils/MyToast";
 import logo from '../../assets/alfa-logo.jpg'
 
-export const HeaderMe = ({token, user}) => {
+export const HeaderMe = ({token, user, lan}) => {
     const navigate = useNavigate();
     const copyToClipboard = () => {
         let input;
@@ -21,7 +21,7 @@ export const HeaderMe = ({token, user}) => {
                         <img width={"100%"} style={{borderRadius: '50%'}} src={logo} alt=""/>
                     </Link>
                     <div className={"w-75 d-flex align-items-start justify-content-center flex-column"}>
-                        <h6 className={"text-dark"}>{token ? localStorage.getItem("firstName") : "hush kelibsiz"}</h6>
+                        <h6 className={"text-dark"}>{token ? localStorage.getItem("firstName") : "hello"}</h6>
                         <div className={"d-flex"}
                              style={{fontSize: '11px'}}>
                             <p className={"text-secondary"} style={{fontSize: '12px'}}> UID
@@ -41,7 +41,8 @@ export const HeaderMe = ({token, user}) => {
                 <div onClick={() => navigate(token ? "/auth/invite-friends" : "/auth/register")}
                      className={"w-100 d-flex align-items-center justify-content-center flex-column"}>
                     <i className="bi bi-person-add m-0 p-0" style={{fontSize: '26px'}}/>
-                    <p className={"text-secondary mt-0 p-0"} style={{fontSize: '11px'}}>do'stlarni taklif qiling</p>
+                    <p className={"text-secondary mt-0 p-0"}
+                       style={{fontSize: '11px'}}>{lan === "ENG" ? "invite friends" : "пригласить друзей"}</p>
                 </div>
             </div>
         </div>

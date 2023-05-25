@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import logo from '../../assets/alfa-logo.jpg'
 
 export const Profile = () => {
     const [name, setName] = useState(localStorage.getItem("firstName"))
@@ -7,8 +8,9 @@ export const Profile = () => {
     const [email, setEmail] = useState(localStorage.getItem("email"))
     return (
         <div className={"w-100 d-flex align-items-center justify-content-center flex-column"}>
-            <div className={"w-100"} style={{height: '20vh', backgroundColor: 'white'}}>
-                <img src="salom" alt="1"/>
+            <div className={"w-100 d-flex align-items-center justify-content-center"}
+                 style={{height: '20vh', backgroundColor: 'white'}}>
+                <img src={logo} width={"100px"} alt="1"/>
             </div>
             <div className={"p-3 mt-3 w-100 d-flex align-items-center justify-content-between"}
                  style={{backgroundColor: 'white'}}>

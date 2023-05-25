@@ -1,17 +1,19 @@
 import {useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
-import {getOneAbout} from "../../serverConnect/service/Service";
+import {getOneAbout, Save} from "../../serverConnect/service/Service";
 import {Apis} from "../../serverConnect/Apis";
 import {Loader} from "../../component/Loader";
 import {Button} from "reactstrap";
-import {error} from "../../utils/MyToast";
+import {error, success} from "../../utils/MyToast";
+import {useNavigate} from 'react-router-dom'
 
 export const InvestUser = ({user}) => {
     const invId = useParams().invId
     const id = useParams().id
     const [inv, setInv] = useState({})
+    const navigate = useNavigate()
     const [pool, setPool] = useState({})
-    const [money, setMoney] = useState('')
+    const [money, setMoney] = useState(0)
     const [loading, setLoading] = useState(false)
     const getInv = async () => {
         try {
@@ -34,6 +36,27 @@ export const InvestUser = ({user}) => {
         flexDirection: 'column',
         borderRadius: '12px'
     }
+
+    const investHandler = async () => {
+        const deposit = inv.financialAmount.split(" - ")
+        const minSum = Number.parseInt(deposit[0])
+        const maxSum = Number.parseInt(deposit[1])
+        if (money.trim().length === 0) {
+            return error("pul kiritishingiz shart")
+        }
+        if (money < minSum) {
+            return error("Tikayotgan pulingiz ushbu hovuzga to'gri kelmaydi iltimos kattaroq pul kiriting")
+        }
+        if (money > maxSum) {
+            return error("Tikayotgan pulingiz ushbu hovuzga to'gri kelmaydi iltimos kichikroq pul kiriting")
+        }
+        const data = {
+            money, investId: invId, userId: user.id
+        }
+        success("Iltimos kuting...")
+        await Save(data, Apis.deposit, "", navigate, "/pool")
+    }
+
     return (
         <div>
             {loading ? (
@@ -85,13 +108,13 @@ export const InvestUser = ({user}) => {
                                 <input type="number" className={"form-control mt-2"}
                                        style={{border: 'none', outline: 'none', borderBottom: '1px solid #625c5c57'}}
                                        placeholder={`limited deposit ${inv.financialAmount}`} value={money}
-                                       onChange={(e) => setMoney(e.target.value)}/>
+                                       onChange={e => setMoney(e.target.value)}/>
                                 <button className={"btn text-primary"}
                                         onClick={() => setMoney(user.wallet.nowMoney)}>all
                                 </button>
                             </div>
                             <div className={"text-secondary fw-bold mt-2"}>Avaliable balance : <span
-                                className={"text-danger"}>{user.wallet.nowMoney} USDT</span></div>
+                                className={"text-danger"}>{user ? user.wallet.nowMoney : 0} USDT</span></div>
                         </div>
                         <div className="mt-2 p-2"
                              style={{backgroundColor: 'white', width: '96%', borderRadius: '10px'}}>
@@ -102,8 +125,9 @@ export const InvestUser = ({user}) => {
                         </div>
                     </div>
                     <div className={"w-100 d-flex align-items-center justify-content-center"}>
-                        <Button onClick={() => error("sizning hisbingizda mablag' yetarli emas")}
-                                color={user.wallet.nowMoney >= money ? "primary" : "danger"} style={{width: '96%'}}>
+                        <Button onClick={() => investHandler()}
+                                color={user.wallet.nowMoney >= money ? "primary" : "danger"}
+                                className={user.wallet.nowMoney >= money ? "" : "disabled"} style={{width: '96%'}}>
                             Pledge now
                         </Button>
                     </div>

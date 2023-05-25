@@ -1,28 +1,28 @@
 import './primaryCards.css'
 
-export const AboutApp = () => {
+export const AboutApp = ({aboutApp, lan}) => {
     return (
         <div className={"a bg-light p-2"}>
             <div className="col">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet exercitationem iusto officiis quasi.
-                Assumenda, eius odit quidem reprehenderit totam voluptatibus. Consectetur consequatur dolore
+                {aboutApp.uzAbout}
             </div>
             <hr/>
             <div className="mt-4 row">
                 <div className="col">
                     <div>
-                        <span className={"text-primary"} style={{fontSize: '22px'}}>1200</span>Day
+                        <span className={"text-primary"}
+                              style={{fontSize: '22px'}}>{aboutApp.dayAppLaunched}</span>{lan === "ENG" ? 'Day' : "День"}
                     </div>
                     <h6>
-                        adsadsad sads
+                        {lan === "ENG" ? "The day the program worked" : "День, когда программа работала"}
                     </h6>
                 </div>
                 <div className="col">
                     <div>
-                        <span className={"text-primary"} style={{fontSize: '22px'}}>1256876</span>USDT
+                        <span className={"text-primary"} style={{fontSize: '22px'}}>{aboutApp.howMuchMoneyApp}</span>USDT
                     </div>
                     <h6>
-                        sdajdsdasjkdasdka
+                        {lan === "ENG" ? "Money withdrawn from this program" : "Деньги выведены из этой программы"}
                     </h6>
                 </div>
             </div>

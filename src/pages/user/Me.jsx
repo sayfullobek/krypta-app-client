@@ -1,7 +1,7 @@
 import {Link, useNavigate} from "react-router-dom";
 import React from "react";
 import {HeaderMe} from "../../component/meComponent/HeaderMe";
-import {success} from "../../utils/MyToast";
+import {error, success} from "../../utils/MyToast";
 import {Loader} from "../../component/Loader";
 import globe from '../../assets/lucky jet.jpg'
 
@@ -20,16 +20,18 @@ export const Me = ({user, loading, lan}) => {
 
     const meArr = [
         {
-            name: lan === "UZB" ? 'Pul olish manzili' : lan === "ENG" ? "WithDrawal Address" : "Адрес с отрисовкой",
+            name:
+                lan === "ENG" ? "WithDrawal Address" : "Адрес с отрисовкой",
             icon: 'bi bi-geo-alt',
             link: "/auth/withdrawal-address",
             type: "auto",
             isHidden: true
         },
         {
-            name: lan === "UZB" ? 'Mijozlarga xizmat ko\'rsatish bilan bog\'laning' : lan === "ENG" ? "Contact customer service" : "Связаться со службой поддержки клиентов",
+            name:
+                lan === "ENG" ? "Contact customer service" : "Связаться со службой поддержки клиентов",
             icon: 'bi bi-headset',
-            link: "/contact-customer",
+            link: "/me",
             type: "auto",
             isHidden: true
         },
@@ -43,31 +45,62 @@ export const Me = ({user, loading, lan}) => {
         {type: "none", isHidden: true},
         {name: 'Feedback', icon: 'bi bi-envelope-open', link: "/auth/feedback", type: "auto", isHidden: !!token},
         {
-            name: lan === "UZB" ? 'Tilni almashtirish' : lan === "ENG" ? "Switch Language" : "Переключить язык",
+            name:
+                lan === "ENG" ? "Switch Language" : "Переключить язык",
             icon: 'bi bi-translate',
             link: "/auth/switch-languages",
             type: "auto",
             isHidden: true
         },
-        {name: lan === "UZB" ? 'Yordam' : lan === "ENG" ? "Help" : "помощь", icon: 'bi bi-question-circle', link: "/help", type: "auto", isHidden: true},
-        {name: lan === "UZB" ? 'Biz haqimizda' : lan === "ENG" ? "About us" : "О нас", icon: 'bi bi-info-circle', link: "/about-us", type: "auto", isHidden: true},
-        {name: lan === "UZB" ? 'Keshni tozalang' : lan === "ENG" ? "Clear the cache" : "Очистить кеш", icon: 'fas fa-broom', type: "auto", functions: clearCache, isHidden: true},
+        {
+            name:
+                lan === "ENG" ? "Help" : "помощь",
+            icon: 'bi bi-question-circle',
+            link: "/help",
+            type: "auto",
+            isHidden: true
+        },
+        {
+            name:
+                lan === "ENG" ? "About us" : "О нас",
+            icon: 'bi bi-info-circle',
+            link: "/me",
+            type: "auto",
+            isHidden: true
+        },
+        {
+            name:
+                lan === "ENG" ? "Clear the cache" : "Очистить кеш",
+            icon: 'fas fa-broom',
+            type: "auto",
+            functions: clearCache,
+            isHidden: true
+        },
         {type: "none", isHidden: true},
-        {name: lan === "UZB" ? 'Chiqish' : lan === "ENG" ? "Log out" : "Выйти", type: "center", functions: logoutHanlder, isHidden: !!token},
+        {
+            name:
+                lan === "ENG" ? "Log out" : "Выйти",
+            type: "center",
+            functions: logoutHanlder,
+            isHidden: !!token
+        },
     ]
 
     const balanceArr = [
         {
-            name: lan === "UZB" ? 'Jami daromad' : lan === "ENG" ? "All Balance" : "Общая прибыль",
+            name:
+                lan === "ENG" ? "All Balance" : "Общая прибыль",
             sum: localStorage.length === 0 ? "0" : user.wallet === undefined ? 0 : user.wallet.allInCome
             //sum: localStorage.length === 0 ? "0" : user.wallet === undefined ? 0 : user.wallet.allInCome
         },
         {
-            name: lan === "UZB" ? 'Jami yechib olish' : lan === "ENG" ? "Total Withdrawal" : "Общий вывод",
+            name:
+                lan === "ENG" ? "Total Withdrawal" : "Общий вывод",
             sum: localStorage.length === 0 ? "0" : user.wallet === undefined ? 0 : user.wallet.nechaMartaPulKiritgan
         },
         {
-            name: lan === "UZB" ? 'Jamoalar soni' : lan === "ENG" ? "Number of teams" : "Количество команд",
+            name:
+                lan === "ENG" ? "Number of teams" : "Количество команд",
             sum: localStorage.length === 0 ? "0" : user.wallet === undefined ? 0 : user.wallet.offer
         },
     ]
@@ -86,7 +119,7 @@ export const Me = ({user, loading, lan}) => {
                                 </>
                             ) : (0)}
                             <div>
-                                {lan === "UZB" ? "mening hozirgi pulim" : lan === "ENG" ? "My total assets USDT" : "ruscha"}
+                                {lan === "ENG" ? "My total assets USDT" : "ruscha"}
                             </div>
                         </div>
                         <div
@@ -106,7 +139,8 @@ export const Me = ({user, loading, lan}) => {
                     </div>
 
                     <div className="card text-bg-dark mt-3">
-                        <img src={globe} className="card-img" alt="1" onClick={() => navigete("/lucky-jet")}/>
+                        <img src={globe} className="card-img" alt="1"
+                             onClick={() => error("Sizning mintaqangizda muammo mavjud")}/>
                     </div>
                     {token ? (
                         <></>

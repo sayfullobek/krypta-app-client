@@ -5,7 +5,7 @@ import {embeddedGet} from "../../serverConnect/service/Service";
 import {Apis} from "../../serverConnect/Apis";
 import {Loader} from "../Loader";
 
-export const CoinsList = ({status, coin, loading}) => {
+export const CoinsList = ({status, coin, loading, user, lan}) => {
 
     return (
         <div className={"p-2 bg-light"}>
@@ -21,8 +21,9 @@ export const CoinsList = ({status, coin, loading}) => {
                                 </div>
                                 <div
                                     className={"w-50 d-flex align-items-end justify-content-center flex-column"}>
-                                    <p className={"m-0 text-dark fw-bold"} style={{fontSize: '18px'}}>8</p>
-                                    <p className={"m-0"}>= 8 USTD</p>
+                                    <p className={"m-0 text-dark fw-bold"}
+                                       style={{fontSize: '18px'}}>{loading ? user ? user.wallet.nowMoney : "0" : "0"}</p>
+                                    <p className={"m-0"}>= {loading ? user ? user.wallet.nowMoney : "0" : "0"} USTD</p>
                                 </div>
                             </div>
                             <hr/>
@@ -33,9 +34,9 @@ export const CoinsList = ({status, coin, loading}) => {
                 <table className={"table table-borderless"}>
                     <thead>
                     <tr>
-                        <th>coin nomi</th>
-                        <th>price</th>
-                        <th>foizi</th>
+                        <th>{lan === "ENG" ? "coin name" : "название монеты\n"}</th>
+                        <th>{lan === "ENG" ? "price" : "расходы"}</th>
+                        <th>{lan === "ENG" ? "profit" : "процент"}</th>
                     </tr>
                     </thead>
                     <tbody>

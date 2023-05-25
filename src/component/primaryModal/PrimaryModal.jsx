@@ -41,7 +41,7 @@ export const PrimaryModal = () => {
                 </div>
                 <div className={"closejon"}>
                     <div id="close" className={"closes"} onClick={() => closeOnclick()}>
-                        <i className="uil uil-times" style={{fontSize:'28px'}}/>
+                        <i className="uil uil-times" style={{fontSize: '28px'}}/>
                     </div>
                 </div>
             </div>

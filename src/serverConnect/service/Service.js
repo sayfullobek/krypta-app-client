@@ -28,14 +28,12 @@ export const Save = async (data, url, id, navigate, navigateUrl) => {
         } else {
             res = await ApiController.doPut(id, url, data)
         }
-        console.log(res)
         if (isSuccess(res.status)) {
             toast.success(res.data.message)
             navigate(navigateUrl)
             localStorage.setItem("__coin_photoId__", "")
         }
     } catch (err) {
-        console.log(err)
         toast.error(err.response.data.message)
     }
 }

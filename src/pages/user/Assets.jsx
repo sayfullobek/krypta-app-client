@@ -5,17 +5,23 @@ import {embeddedGet} from "../../serverConnect/service/Service";
 import {Apis} from "../../serverConnect/Apis";
 import {Loader} from "../../component/Loader";
 
-export const Assets = () => {
+export const Assets = ({user, lan, load}) => {
+    const [loading, setLoading] = useState(false)
     const token = localStorage.getItem("token")
     const arr = [
-        {name: 'My total assets USDT', size: 8},
-        {name: 'My total assets USDT', size: 0},
-        {name: 'My total assets USDT', size: 0},
-        {name: 'My total assets USDT', size: 0},
-        {name: 'My total assets USDT', size: 0},
-        {name: 'My total assets USDT', size: 0},
+        {
+            name: lan === "ENG" ? 'My total assets USDT' : "Мои общие активы в USDT",
+            size: load ? user.wallet ? user.wallet.nowMoney : "0" : 0
+        },
+        {
+            name: lan === "ENG" ? 'My total assets ALFA' : "Мои общие активы в ALFA",
+            size: 0
+        },
+        // {name: 'My total assets USDT', size: 0},
+        // {name: 'My total assets USDT', size: 0},
+        // {name: 'My total assets USDT', size: 0},
+        // {name: 'My total assets USDT', size: 0},
     ]
-    const [loading, setLoading] = useState(false)
     const [coin, setCoins] = useState([])
 
     const getAll = async () => {
@@ -33,12 +39,13 @@ export const Assets = () => {
         <div>
             {token ? (
                 loading ? (
-                    <div className={"w-100"}>
-                        <div className={"w-100 p-2"} style={{backgroundColor: 'white'}}>
+                    <div className={"d-flex align-items-center justify-content-center flex-column"}
+                         style={{width: "96%"}}>
+                        <div className={"p-2"} style={{backgroundColor: 'white'}}>
                             <div className={"w-100 text-center fw-bold"} style={{fontSize: '30px'}}>
-                                8
+                                {load ? user ? user.wallet.nowMoney : "0" : "0"}
                                 <div className={"mt-2 text-primary"}>
-                                    My total assets USDT
+                                    {lan === "ENG" ? 'My total assets USDT' : "Мои общие активы в USDT"}
                                 </div>
                             </div>
                             <div className="row mt-3">
@@ -53,9 +60,9 @@ export const Assets = () => {
                             </div>
                         </div>
                         <div className={"w-100 mt-3 p-2"} style={{backgroundColor: 'white'}}>
-                            <p className={"fw-bold text-dark"}>avialable assets</p>
+                            <p className={"fw-bold text-dark"}>{lan === "ENG" ? "avialable assets" : "доступные активы"}</p>
                             <div className="row">
-                                <CoinsList status={"assets"} coin={coin} loading={loading}/>
+                                <CoinsList status={"assets"} coin={coin} loading={load} user={user}/>
                             </div>
                         </div>
                     </div>

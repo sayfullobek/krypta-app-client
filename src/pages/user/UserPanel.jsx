@@ -7,9 +7,24 @@ import {Apis} from "../../serverConnect/Apis";
 import {Carusel} from "../../component/Carusel";
 import {PrimaryModal} from "../../component/primaryModal/PrimaryModal";
 import video from '../../assets/video.mp4'
+import {Loader} from "../../component/Loader";
+import {useNavigate} from "react-router-dom";
 
+export const UserPanel = ({user}) => {
+    const [aboutApp, setAboutApp] = useState({})
+    const [id, setId] = useState('')
+    const navigate = useNavigate();
 
-export const UserPanel = () => {
+    const getAppAbout = async () => {
+        try {
+            setLoading(true)
+        } catch (err) {
+        }
+    }
+
+    useEffect(() => {
+        getAppAbout()
+    }, [])
     const arr = [
         {name: 'boboxon 100$ yutib oldi'},
         {name: 'asl 200$ yutib oldi'},
@@ -34,6 +49,7 @@ export const UserPanel = () => {
     const getAll = async () => {
         try {
             await embeddedGet(Apis.coin, setCoins, "data")
+            await embeddedGet(Apis.aboutAppGet, setAboutApp, "data")
             setLoading(true)
         } catch (err) {
         }
@@ -53,34 +69,24 @@ export const UserPanel = () => {
 
     return (
         <div className={"p-2"}>
-            <PrimaryModal/>
-            <Carusel/>
-            <br/>
-            <p className={"text-center bg-light"}>Salom</p>
-            <div className="card text-bg-dark">
-                <video controls>
-                    <source src={video}/>
-                </video>
-            </div>
-            <br/>
-            <PrimaryCards/>
-            <CoinsList status={"panel"} coin={coin}/>
-            <AboutApp/>
-            <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet"/>
-
-            <div className="content">
-                <div className="content__container">
-                    <p className="content__container__text">
-                        Hello
-                    </p>
-
-                    <ul className="content__container__list" style={stylejon}>
-                        {arr.map(item => (
-                            <li className="content__container__list__item">{item.name}</li>
-                        ))}
-                    </ul>
-                </div>
-            </div>
+            {loading ? (
+                <>
+                    <PrimaryModal/>
+                    <Carusel/>
+                    <br/>
+                    <div className="card text-bg-dark">
+                        <video controls>
+                            <source src={video}/>
+                        </video>
+                    </div>
+                    <br/>
+                    <PrimaryCards/>
+                    <CoinsList status={"panel"} coin={coin} user={user}/>
+                    <AboutApp aboutApp={aboutApp}/>
+                </>
+            ) : (
+                <Loader/>
+            )}
         </div>
     )
 }

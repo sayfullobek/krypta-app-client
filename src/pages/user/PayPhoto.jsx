@@ -4,7 +4,7 @@ import {Apis} from "../../serverConnect/Apis";
 import {Button} from "reactstrap";
 import {success} from "../../utils/MyToast";
 
-export const PayPhoto = ({user}) => {
+export const PayPhoto = ({user, lan}) => {
     const photoId = localStorage.getItem('__pay_photo__')
 
     const navigate = useNavigate()
@@ -34,7 +34,7 @@ export const PayPhoto = ({user}) => {
     }
     return (
         <div className={"w-100"}>
-            <h5 className={"p-3 text-center text-dark"}>To'lov qilganingizni tasdiqlang</h5>
+            <h5 className={"p-3 text-center text-dark"}>{lan === "ENG" ? "Confirm your payment" : "Подтвердите платеж"}</h5>
             {photoId ? (
                 <div className={"mt-5 w-100 d-flex align-items-center justify-content-center"} style={{height: '70vh'}}>
                     <img src={Apis.getPhoto + photoId} width={"90%"} height={"100%"} alt=""/>
@@ -51,7 +51,7 @@ export const PayPhoto = ({user}) => {
                                border: '1px dashed black',
                                fontSize: '20px'
                            }}>
-                        rasm joylash
+                        {lan==="ENG"?"post a picture":"опубликовать картинку"}
                     </label>
                     <input multiple accept="image/*"
                            onChange={(item) => sendPhoto(item)}
@@ -61,7 +61,7 @@ export const PayPhoto = ({user}) => {
             <div className={"w-100 d-flex align-items-center justify-content-center"}>
                 {photoId ? (
                     <Button color={"primary"} onClick={() => backMenyu()}
-                            style={{width: '96%'}}>Tasdiqlayman</Button>
+                            style={{width: '96%'}}>{lan === "ENG" ? "I approve" : "я одобряю"}</Button>
                 ) : (<></>)}
             </div>
         </div>

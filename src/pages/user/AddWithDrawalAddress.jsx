@@ -5,19 +5,19 @@ import {Save} from "../../serverConnect/service/Service";
 import {Apis} from "../../serverConnect/Apis";
 import {useNavigate} from 'react-router-dom'
 
-export const AddWithDrawalAddress = ({status}) => {
+export const AddWithDrawalAddress = ({status, lan}) => {
     const userId = localStorage.getItem("__id__")
     const navigate = useNavigate();
-    const [valyutaType, setValyutaType] = useState(localStorage.getItem("valyutaType") || 'BTC')
-    const [primaryTarmoq, setPrimaryTarmoq] = useState(localStorage.getItem("primaryTarmoq") || 'BTC')
+    const [valyutaType, setValyutaType] = useState(localStorage.getItem("valyutaType") || 'USDT')
+    const [primaryTarmoq, setPrimaryTarmoq] = useState(localStorage.getItem("primaryTarmoq") || 'TRC20')
     const [nickName, setNickName] = useState(localStorage.getItem("nickName") || '')
     const [withAddress, setWithAddress] = useState(localStorage.getItem("withAddress") || '')
     const coinArr = [
+        {logo: '', name: 'USDT', net: [{name: 'TRC20'}, {name: 'BEP20'}, {name: 'ERC20'}]},
         {logo: '', name: 'BTC', net: [{name: "BTC"}]},
         {logo: '', name: 'ETH', net: [{name: "ETH"}]},
         {logo: '', name: 'MAG', net: [{name: 'TRC20'}]},
         {logo: '', name: 'TRX', net: [{name: 'TRC20'}]},
-        {logo: '', name: 'USDT', net: [{name: 'TRC20'}, {name: 'BEP20'}, {name: 'ERC20'}]},
     ]
     const saveAddress = async () => {
         if (nickName.trim().length < 3) {
@@ -30,7 +30,7 @@ export const AddWithDrawalAddress = ({status}) => {
         <div className={"w-100"} style={{height: '60vh'}}>
             <div style={{height: '1vh'}}/>
             <div className={"card p-3 m-2"} style={{backgroundColor: 'white', width: '97%'}}>
-                <p className={"text-dark"}>valyutani tanlang</p>
+                <p className={"text-dark"}>{lan === "ENG" ? "select a currency" : "выберите валюту"}</p>
                 <button type="button" data-bs-toggle="offcanvas"
                         data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom"
                         className="form-control w-100 d-flex p-2 text-decoration-none"
@@ -53,7 +53,7 @@ export const AddWithDrawalAddress = ({status}) => {
                 </button>
             </div>
             <div className={"card p-3 m-2"} style={{backgroundColor: 'white', width: '97%'}}>
-                <p className={"text-dark"}>Bosh tarmoqni tanlang</p>
+                <p className={"text-dark"}>{lan === "ENG" ? "Select the main network" : "Выберите основную сеть"}</p>
                 <div className={"w-100 d-flex align-items-center justify-content-around"}>
                     {coinArr.map(item => (
                         item.name === valyutaType ? (
@@ -69,24 +69,28 @@ export const AddWithDrawalAddress = ({status}) => {
                 </div>
             </div>
             <div className={"card p-3 m-2"} style={{backgroundColor: 'white', width: '97%'}}>
-                <p className={"text-dark"}>Taxallus nomi</p>
+                <p className={"text-dark"}>{lan === "ENG" ? "Nickname" : "Псевдоним"}</p>
                 <input type="text" value={nickName} onChange={e => setNickName(e.target.value)}
-                       placeholder={"Iltimos taxallusingizni kiriting"} className={"form-control"}/>
+                       placeholder={lan === "ENG" ? "Please enter your nickname" : "Пожалуйста, введите ваш никнейм"}
+                       className={"form-control"}/>
             </div>
             <div className={"card p-3 m-2"} style={{backgroundColor: 'white', width: '97%'}}>
-                <p className={"text-dark"}>Oson yechib olish</p>
+                <p className={"text-dark"}>{lan === "ENG" ? "Easy removal" : "Легкое удаление"}</p>
                 <input type="text" value={withAddress} onChange={e => setWithAddress(e.target.value)}
-                       placeholder={"Iltimos hamyon manzilingizni kiriting"} className={"form-control"}/>
+                       placeholder={lan === "ENG" ? "Please enter your wallet address" : "Пожалуйста, введите адрес вашего кошелька"}
+                       className={"form-control"}/>
             </div>
             <Button onClick={() => saveAddress()}
                     color={withAddress.trim().length > 6 ? "primary m-2" : "primary m-2 disabled"}
-                    style={{width: '97%', position: 'absolute', bottom: '10px'}}>Qo'shishni
-                tasdiqlang</Button>
+                    style={{width: '97%', position: 'absolute', bottom: '10px'}}>{lan === "ENG" ? "To add\n" +
+                "                confirm" : "Добавить\n" +
+                "                подтверждать"}</Button>
 
             <div className="offcanvas offcanvas-bottom" tabIndex="-1" id="offcanvasBottom"
                  aria-labelledby="offcanvasBottomLabel">
                 <div className="offcanvas-header">
-                    <h5 className="offcanvas-title" id="offcanvasBottomLabel">Valyuta turini tanlang</h5>
+                    <h5 className="offcanvas-title"
+                        id="offcanvasBottomLabel">{lan === "ENG" ? "Select a currency type" : "Выберите тип валюты"}</h5>
                     <button type="button" className="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"/>
                 </div>
                 <div className="offcanvas-body small">

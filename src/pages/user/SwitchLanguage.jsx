@@ -6,9 +6,10 @@ export const SwitchLanguage = () => {
     const navigate = useNavigate()
     const [lan, setLan] = useState(localStorage.getItem("__lan__"))
     const lanArr = [
-        {name: "O'zbelcha", val: 'UZB'},
         {name: "Inglizcha", val: "ENG"},
         {name: "Ruscha", val: "RUS"},
+        {name: "Türkçe", val: "TURK"},
+        {name: "қазақ", val: "KAZ"},
     ]
     const changeLan = (lan) => {
         localStorage.setItem("__lan__", lan)

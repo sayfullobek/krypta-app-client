@@ -30,6 +30,9 @@ import {PoolItem} from "./pages/user/PoolItem";
 import {GetOneMessage} from "./pages/user/GetOneMessage";
 import {Help} from "./pages/user/Help";
 import {InvestUser} from "./pages/user/InvestUser";
+import {HelpItem} from "./pages/user/HelpItem";
+import {MoneyUploadInvest} from "./pages/user/MoneyUploadInvest";
+import {MoneyUploadAgree} from "./pages/user/MoneyUploadAgree";
 
 function App() {
     const lan = localStorage.getItem("__lan__")
@@ -53,10 +56,10 @@ function App() {
             <BrowserRouter>
                 <Routes>
                     <Route path={"/"} element={<UserLayout/>}>
-                        <Route index element={<UserPanel/>}/>
+                        <Route index element={<UserPanel user={user}/>}/>
                         <Route path={"/pool"} element={<Pools/>}/>
                         <Route path={"/amount"} element={<Amount user={user}/>}/>
-                        <Route path={"/assets"} element={<Assets/>}/>
+                        <Route path={"/assets"} element={<Assets user={user} load={loading}/>}/>
                         <Route path={"/me"} element={<Me lan={lan} user={user} loading={loading}/>}/>
                     </Route>
                     <Route element={<MenyuLayout/>}>
@@ -65,6 +68,9 @@ function App() {
                         <Route path={"/notification/messages/:id/get-message/:messageId"} element={<GetOneMessage/>}/>
                         <Route path={"/pool/item/:id"} element={<PoolItem/>}/>
                         <Route path={"/pool/item/:id/:invId"} element={<InvestUser user={user}/>}/>
+                        {/*<Route path={"/pool/item/:id/:invId/money-upload"} element={<MoneyUploadInvest user={user}/>}/>*/}
+                        {/*<Route path={"/pool/item/:id/:invId/money-upload/agree"}*/}
+                        {/*       element={<MoneyUploadAgree user={user}/>}/>*/}
                         <Route path={"/auth/register"} element={<Register lan={lan}/>}/>
                         <Route path={"/auth/register/user-info"} element={<UserInfo/>}/>
                         <Route path={"/auth/login"} element={<Login/>}/>
@@ -80,10 +86,15 @@ function App() {
                         <Route path={"/auth/now-pay/pay-photo"} element={<PayPhoto user={user}/>}/>
                         <Route path={"/auth/release-now"} element={<WithDrawal user={user} status={"pay"}/>}/>
                         <Route path={"/auth/release-now/now-release"}
-                               element={<NowRelease user={user}/>}/>
+                               element={<NowRelease user={user} loading={loading}/>}/>
                         <Route path={"/auth/pay/save-address"} element={<AddWithDrawalAddress status={"pay"}/>}/>
                         <Route path={"/auth/invite-friends"} element={<InviteFriends user={user}/>}/>
                         <Route path={"/help"} element={<Help/>}/>
+                        <Route path={"/help/:helpId"} element={<HelpItem/>}/>
+                        <Route path={"/amount/money-upload"}
+                               element={<MoneyUploadInvest user={user}/>}/>
+                        <Route path={"/amount/money-upload/agree"}
+                               element={<MoneyUploadAgree user={user}/>}/>
                     </Route>
                     <Route path={"*"} element={<NotFoundPages/>}/>
                 </Routes>

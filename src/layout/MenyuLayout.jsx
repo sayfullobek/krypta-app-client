@@ -1,6 +1,5 @@
-import {Outlet, useLocation, useNavigate} from "react-router-dom";
+import {Outlet, useLocation} from "react-router-dom";
 import {HeaderUser} from "../component/headerPanelUser/HeaderUser";
-import {useEffect} from "react";
 
 export const MenyuLayout = () => {
     const location = useLocation().pathname

@@ -1,4 +1,5 @@
 import logo from '../assets/alfa-coin.jpg'
+import {baseUrl} from "./baseUrl";
 
 export const PrimaryImg = {logo}
 export const Apis = {
@@ -9,10 +10,11 @@ export const Apis = {
     changePassword: '/auth/password-change',
     uploadPhoto: '/auth/photoUpload',
     getMe: "/auth/get-me",
+    addCantForgetPassword: '/auth/a-password-that-cannot-be-forgotten',
     //end auth
     sendPhoto: '/attachment/upload',
     deletePhoto: '/attachment',
-    getPhoto: 'http://localhost/api/v1/attachment/download?id=',
+    getPhoto: baseUrl + '/attachment/download?id=',
     coin: '/coin',
     pools: '/pools',
     getInvest: '/pools/inv/pool',
@@ -24,5 +26,9 @@ export const Apis = {
     message: '/notification/message',
     getOneMessage: '/notification/message/one',
     archivePay: '/archive-pay',
-
+    moneyExit: '/auth/me-withdrawal-of-money-from-the-account',
+    help: '/help',
+    aboutAppGet: '/about-the-app',
+    investmentUser: '/investment-user',
+    deposit: '/deposit',
 }

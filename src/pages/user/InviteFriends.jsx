@@ -1,5 +1,5 @@
 import {Button} from "reactstrap";
-import {success} from "../../utils/MyToast";
+import {error, success} from "../../utils/MyToast";
 
 export const InviteFriends = ({user}) => {
     const token = localStorage.getItem("token")
@@ -31,8 +31,8 @@ export const InviteFriends = ({user}) => {
                     <h5>Alfa Coin</h5>
                     <p>moliyaviy mutaxasislar yoningizda</p>
                 </div>
-                <div className={"w-50 bg-success"} style={{height: '25%'}}>
-                </div>
+                {/*<div className={"w-50 bg-success"} style={{height: '25%'}}>*/}
+                {/*</div>*/}
                 <div className={"w-75 mt-3 bg-light"}
                      style={{height: '10%', borderRadius: '10px', boxShadow: '#77727278 0px 0px 10px 1px'}}>
                     <div className={"p-3"}>
@@ -54,7 +54,8 @@ export const InviteFriends = ({user}) => {
                     <Button color={"primary w-25"} style={{fontSize: '10px'}} onClick={() => copyToClipboard()}>nusxa
                         olish</Button>
                 </div>
-                <Button color={"primary"} className={"mb-5"} style={{fontSize: '14px', width: '96%'}}>Albomga
+                <Button color={"primary"} onClick={() => error("Sizning qurilmangizga ulanib bo'lmadi")}
+                        className={"mb-5"} style={{fontSize: '14px', width: '96%'}}>Albomga
                     saqlash
                     uchun bosing</Button>
             </div>
