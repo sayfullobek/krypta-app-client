@@ -32,3 +32,4 @@ export const Apis = {
     investmentUser: '/investment-user',
     deposit: '/deposit',
 }
+
