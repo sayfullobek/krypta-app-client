@@ -9,7 +9,7 @@ export const UserLayout = () => {
     return (
         <div>
             {token ? (
-                <>
+                <div className={"w-100 d-flex align-items-center justify-content-center flex-column"}>
                     <NavBar/>
                     <main className={""}
                           style={{height: '88vh', overflow: 'auto', backgroundColor: 'rgba(226, 222, 222, 0.42)'}}>
@@ -19,7 +19,7 @@ export const UserLayout = () => {
                         </section>
                     </main>
                     {/*<TabBar/>*/}
-                </>
+                </div>
             ) : (
                 <NotFoundPages/>
             )}
