@@ -43,7 +43,9 @@ function App() {
     const [loading, setLoading] = useState(false)
     const getMe = async () => {
         try {
-            setUser(await getOneAbout(Apis.getMe, id, "data"))
+            if (localStorage.length !== 0) {
+                setUser(await getOneAbout(Apis.getMe, id, "data"))
+            }
             setLoading(true)
         } catch (err) {
         }
