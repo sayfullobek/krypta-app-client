@@ -3,7 +3,6 @@ import {useNavigate} from 'react-router-dom'
 
 export const UserVipList = ({vips, lan, balance, userVip}) => {
     const navigate = useNavigate()
-    console.log(userVip)
     return (
         <div className={"w-100 d-flex align-items-center justify-content-center flex-column"}>
             {vips.map(item => (

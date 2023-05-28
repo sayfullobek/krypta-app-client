@@ -46,15 +46,15 @@ export const UserPanel = ({user, load, lan, getMe}) => {
         setUserFriendProfit(load ? user.wallet ? user.wallet.friendsProfit + " USDT" : 0 : 0)
     }
     useEffect(() => {
-        if (load ? user.wallet ? user.wallet.theMoneyHeInvested : 0 : 0 !== 0) {
-            const timer = setInterval(() => {
-                setMoney(money + numberArr[[Number.parseInt(Math.random() * 5)]])
-                updateMinutMoney(money).then(r => r)
-            }, 3000);
-            return () => {
-                clearInterval(timer);
-            };
-        }
+        // if (load ? user.wallet ? user.wallet.theMoneyHeInvested : 0 : 0 !== 0) {
+        const timer = setInterval(() => {
+            setMoney(money + numberArr[[Number.parseInt(Math.random() * 5)]])
+            updateMinutMoney(money).then(r => r)
+        }, 3000);
+        return () => {
+            clearInterval(timer);
+        };
+        // }
     });
     const [vips, setVips] = useState([])
 
