@@ -120,7 +120,7 @@ export const Me = ({user, load, lan}) => {
                                 </>
                             ) : (0)}
                             <div>
-                                {lan === "ENG" ? "My total assets USDT" : "ruscha"}
+                                {lan === "ENG" ? "My total assets USDT" : "Мои общие активы USDT"}
                             </div>
                         </div>
                         <div
