@@ -71,12 +71,12 @@ export const UserPanel = ({user, load, lan, getMe}) => {
     }
 
     return (
-        <div className={"p-2"}>
+        <div className={"w-100 d-flex align-items-center justify-content-center flex-column"}>
             {loading ? (
                 <>
                     {user ? (
                         <>
-                            {/*<PrimaryModal lan={lan}/>*/}
+                            <PrimaryModal lan={lan}/>
                             <div className="card p-2 pb-4">
                                 <div className={"w-100"}>
                                     <div
