@@ -9,7 +9,7 @@ export const UserLayout = () => {
     return (
         <div>
             {token ? (
-                <div className={"w-100 d-flex align-items-center justify-content-center flex-column"}>
+                <div>
                     <NavBar/>
                     <main className={""}
                           style={{height: '92vh', overflow: 'auto', backgroundColor: 'rgba(226, 222, 222, 0.42)'}}>
