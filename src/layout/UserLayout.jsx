@@ -12,8 +12,8 @@ export const UserLayout = () => {
                 <div>
                     <NavBar/>
                     <main className={""}
-                          style={{height: '92vh', overflow: 'auto', backgroundColor: 'rgba(226, 222, 222, 0.42)'}}>
-                        <section style={{width: '100%', overflow: 'auto'}} className="section section__height"
+                          style={{overflow: 'auto', backgroundColor: 'rgba(226, 222, 222, 0.42)'}}>
+                        <section style={{overflow: 'auto'}} className="section section__height"
                                  id="home">
                             <Outlet/>
                         </section>
