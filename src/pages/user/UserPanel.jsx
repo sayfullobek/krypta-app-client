@@ -80,7 +80,7 @@ export const UserPanel = ({user, load, lan, getMe}) => {
                                     <div
                                         className={"w-100 d-flex align-items-center justify-content-between flex-column"}>
                                         <div className={"w-100 mt-2 mb-2"}><h3
-                                            className={"text-success fw-bold text-center"}>{load ? user.wallet !== undefined ? user.wallet.theMoneyHeInvested.toString().substr(0, 12) : "0" : 0}
+                                            className={"text-success fw-bold text-center"}>{load ? user.wallet !== undefined ? user.wallet.nowMoney.toString().substr(0, 12) : "0" : 0}
                                             $</h3>
                                         </div>
                                         <div className={"d-flex w-100 align-items-center justify-content-between"}>
