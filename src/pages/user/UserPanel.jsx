@@ -84,11 +84,7 @@ export const UserPanel = ({user, load, lan, getMe}) => {
                                         <div className={"w-100 mt-2 mb-2"}><h3
                                             className={"text-success fw-bold text-center"}>
                                             {load ? user.wallet !== undefined ?
-                                                user.wallet.nowMoney.toString().substr(0, 8).split(".")[0] <= 9 ? (
-                                                    "0,0000" + user.wallet.nowMoney.toString().substr(0, 8)
-                                                ) : (
-                                                    user.wallet.nowMoney.toString().substr(0, 12)
-                                                )
+                                                user.wallet.nowMoney.toString().substr(0, 12)
                                                 : "0" : 0}
                                             {/*{nowMoney}*/}
                                             $</h3>
