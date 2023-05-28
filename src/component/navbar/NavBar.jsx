@@ -38,7 +38,7 @@ export const NavBar = ({lan}) => {
         },
     ]
     return (
-        <div style={{zIndex: '100000'}}>
+        <div style={{zIndex: '100000', height: '12vh'}}>
             <div className={"w-100 d-flex align-items-center justify-content-between"} style={{padding: '0 0 0 4%'}}>
                 <div className={"w-75 d-flex align-items-center justify-content-start"}>
                     <img src={logo} style={{width: '10%'}} alt=""/>

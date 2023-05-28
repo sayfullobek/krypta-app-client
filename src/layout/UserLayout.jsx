@@ -12,7 +12,7 @@ export const UserLayout = () => {
                 <>
                     <NavBar/>
                     <main className={""}
-                          style={{height: '100vh', overflow: 'auto', backgroundColor: 'rgba(226, 222, 222, 0.42)'}}>
+                          style={{height: '88vh', overflow: 'auto', backgroundColor: 'rgba(226, 222, 222, 0.42)'}}>
                         <section style={{width: '100%', overflow: 'auto'}} className="section section__height"
                                  id="home">
                             <Outlet/>
