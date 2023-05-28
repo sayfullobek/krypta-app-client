@@ -4,9 +4,9 @@ import {Link} from "react-router-dom";
 
 export const NowPay = ({lan}) => {
     const [type, setType] = useState('TRC20')
-    const [address, setAddress] = useState('TK7zah95a7n5NrEF6qR83JjEgrHT8ZXcw3')
+    const [address, setAddress] = useState('TPuKr1vyCeBqRezoaTU7M62hEiiAdNpo4T')
     const USDT = [
-        {name: 'TRC20', address: 'TK7zah95a7n5NrEF6qR83JjEgrHT8ZXcw3'},
+        {name: 'TRC20', address: 'TPuKr1vyCeBqRezoaTU7M62hEiiAdNpo4T'},
         // {name: 'BEP20', address: 'dsadsa5676ytrfd'},
         // {name: 'ERC20', address: 'dsadsajhj1232eds'},
     ]

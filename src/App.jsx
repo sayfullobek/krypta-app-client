@@ -63,6 +63,7 @@ function App() {
                             <Route path={"/"} element={<Register lan={lan}/>}/>
                             <Route path={"/auth/register/user-info"} element={<UserInfo/>}/>
                             <Route path={"/auth/login"} element={<Login/>}/>
+                            <Route path={"/auth/register"} element={<Register lan={lan}/>}/>
                         </Routes>
                     </BrowserRouter>
                 </>
