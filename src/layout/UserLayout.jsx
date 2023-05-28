@@ -10,7 +10,7 @@ export const UserLayout = () => {
         <div>
             {token ? (
                 <div className={"w-100 display-flex align-items-center justify-content-center flex-column"}>
-                    <NavBar/>
+                    {/*<NavBar/>*/}
                     <main className={"w-100"}
                           style={{height: '92vh', overflow: 'auto', backgroundColor: 'rgba(226, 222, 222, 0.42)'}}>
                         <section style={{height: '92vh'}} className="section w-100
