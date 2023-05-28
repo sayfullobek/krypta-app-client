@@ -79,8 +79,8 @@ export const UserPanel = ({user, load, lan, getMe}) => {
                             <PrimaryModal lan={lan}/>
                             <div className="card p-2 pb-4">
                                 <div className={"w-100"}>
-                                    <div
-                                        className={"w-100 d-flex align-items-center justify-content-between flex-column"}>
+                                    <div id={"menujon"}
+                                         className={"w-100 d-flex align-items-center justify-content-between flex-column"}>
                                         <div className={"w-100 mt-2 mb-2"}><h3
                                             className={"text-success fw-bold text-center"}>
                                             {load ? user.wallet !== undefined ?
@@ -248,6 +248,16 @@ export const UserPanel = ({user, load, lan, getMe}) => {
                                      userVip={0}/>
                         <AboutApp aboutApp={aboutApp}/>
                     </>)}
+                    <a href={"#menujon"} style={{
+                        position: 'fixed',
+                        bottom: '10%',
+                        right: '5%',
+                        // borderColor:''
+                        color: 'yellow'
+                    }}>
+                        <i className="bi bi-file-arrow-up"
+                           style={{fontSize: '60px'}}/>
+                    </a>
                 </>
             ) : (
                 <Loader/>
