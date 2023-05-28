@@ -10,7 +10,6 @@ import {Pools} from "./pages/user/Pools";
 import {Amount} from "./pages/user/Amount";
 import {Assets} from "./pages/user/Assets";
 import {Me} from "./pages/user/Me";
-// import {Gildirak} from "./component/gildirak/Gildirak";
 import {Login} from "./pages/auth/Login";
 import {Profile} from "./pages/user/Profile";
 import {FeedBack} from "./pages/user/FeedBack";
@@ -92,7 +91,6 @@ function App() {
                                     <Route path={"/pool/item/:id"} element={<PoolItem/>}/>
                                     <Route path={"/pool/item/:id/:invId"} element={<InvestUser user={user}/>}/>
                                     <Route path={"/auth/profile"} element={<Profile lan={lan}/>}/>
-{/*//                                     <Route path={"/lucky-jet"} element={<Gildirak/>}/>*/}
                                     <Route path={"/auth/feedback"} element={<FeedBack/>}/>
                                     <Route path={"/auth/security-settings"} element={<SecuritySettings lan={lan}/>}/>
                                     <Route path={"/auth/withdrawal-address"}
@@ -100,7 +98,7 @@ function App() {
                                     <Route path={"/auth/switch-languages"} element={<SwitchLanguage/>}/>
                                     <Route path={"/auth/save-address"}
                                            element={<AddWithDrawalAddress status={"address"}/>}/>
-                                    <Route path={"/auth/now-pay"} element={<NowPay/>}/>
+                                    <Route path={"/auth/now-pay"} element={<NowPay lan={lan}/>}/>
                                     <Route path={"/auth/now-pay/pay-photo"} element={<PayPhoto user={user}/>}/>
                                     <Route path={"/auth/release-now"}
                                            element={<WithDrawal user={user} status={"pay"} lan={lan}/>}/>
