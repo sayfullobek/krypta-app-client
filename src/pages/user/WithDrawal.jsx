@@ -5,7 +5,7 @@ import {Apis} from "../../serverConnect/Apis";
 import {Loader} from "../../component/Loader";
 import {CantForgetPassword} from "./CantForgetPassword";
 
-export const WithDrawal = ({user, status}) => {
+export const WithDrawal = ({user, status, lan}) => {
     const navigate = useNavigate();
     const [address, setAddress] = useState([])
     const [loading, setLoading] = useState(false)
@@ -45,7 +45,7 @@ export const WithDrawal = ({user, status}) => {
                 <>
                     {user.aPasswordThatCannotBeForgotten === "" || user.apasswordThatCannotBeForgotten === null ? (
                         <>
-                            <CantForgetPassword/>
+                            <CantForgetPassword lan={lan}/>
                         </>
                     ) : (
                         <>
@@ -65,7 +65,7 @@ export const WithDrawal = ({user, status}) => {
                                   to={status === "address" ? "/auth/save-address" : "/auth/pay/save-address"}
                                   className={"btn btn-primary m-2"}
                                   style={{position: 'absolute', bottom: '0', width: '97%'}}>
-                                address qo'shish
+                                {lan === "ENG" ? "Add address" : "Добавить адрес"}
                             </Link>
                         </>
                     )}

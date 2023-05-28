@@ -6,7 +6,7 @@ import {embeddedGet} from "../../serverConnect/service/Service";
 import {Loader} from "../../component/Loader";
 import {Link} from "react-router-dom";
 
-export const Amount = ({user, lan}) => {
+export const Amount = ({user, lan, load}) => {
     const token = localStorage.getItem("token")
     const globe1 = "https://media.sketchfab.com/models/cb636fdd7f124125a3b7d194da9942e1/thumbnails/3acf153eed654d31932803efcf37ea34/05fb0bf23df844bebb8710f1814bde20.jpeg"
 
@@ -42,7 +42,9 @@ export const Amount = ({user, lan}) => {
                                     <div>
                                         <p className={"m-0"}>{lan === "ENG" ? "Total assets" : "Всего активов"}
                                             (USDT)</p>
-                                        <h3>{user.wallet ? user.wallet.nowMoney : "0"}</h3>
+                                        <h3>
+                                            {load ? user.wallet !== undefined ? user.wallet.nowMoney : "0" : 0}
+                                        </h3>
                                     </div>
                                     <Link to={"/amount/money-upload"}
                                           className={"btn btn-primary"}>{lan === "ENG" ? "enable coin insterest" : "активировать интерес к монетам"}</Link>
@@ -85,29 +87,6 @@ export const Amount = ({user, lan}) => {
                                 </div>
                                 <div className={"d-flex mb-1"}>
                                     <div style={{fontSize: '14px'}}
-                                         className={"w-75"}>{lan === "ENG" ? "effective amount" : "эффективное количество"}</div>
-                                    <div style={{fontSize: '14px'}}
-                                         className={"w-25 text-end fw-bold"}>{user.vips ? user.vips.effectiveEmount : ""}
-                                    </div>
-                                </div>
-                                <div className={"d-flex mb-1"}>
-                                    <div style={{fontSize: '14px'}}
-                                         className={"w-75"}>{lan === "ENG" ? "direct promotion of members" : "прямое продвижение членов"}
-                                    </div>
-                                    <div style={{fontSize: '14px'}}
-                                         className={"w-25 text-end fw-bold"}>{user.vips ? user.vips.directlyPromoteMembers : ""}
-                                    </div>
-                                </div>
-                                <div className={"d-flex mb-1"}>
-                                    <div style={{fontSize: '14px'}}
-                                         className={"w-75"}>{lan === "ENG" ? "second and third generation" : "второе и третье поколение"}
-                                    </div>
-                                    <div style={{fontSize: '14px'}}
-                                         className={"w-25 text-end fw-bold"}>{user.vips ? user.vips.secondThridGenerationMembers : ""}
-                                    </div>
-                                </div>
-                                <div className={"d-flex mb-1"}>
-                                    <div style={{fontSize: '14px'}}
                                          className={"w-75"}>{lan === "ENG" ? "benefit" : "выгода"}
                                     </div>
                                     <div style={{fontSize: '14px'}}
@@ -119,15 +98,7 @@ export const Amount = ({user, lan}) => {
                                          className={"w-75"}>{lan === "ENG" ? "number of inspections per day" : "количество проверок в день"}
                                     </div>
                                     <div style={{fontSize: '14px'}}
-                                         className={"w-25 text-end fw-bold"}>{user.vips ? user.vips.metaGORobotsAvailablePerDay : ""} {lan === "ENG" ? "time" : "время"}
-                                    </div>
-                                </div>
-                                <div className={"d-flex mb-1"}>
-                                    <div style={{fontSize: '14px'}}
-                                         className={"w-75"}>{lan === "ENG" ? "team reward percentage" : "процент вознаграждения команды"}
-                                    </div>
-                                    <div style={{fontSize: '14px'}}
-                                         className={"w-25 text-end fw-bold"}>{user.vips ? user.vips.teamAward : ""}%
+                                         className={"w-25 text-end fw-bold"}>{user.vips ? user.vips.alfaRobotsAvailablePerDay : ""} {lan === "ENG" ? "time" : "время"}
                                     </div>
                                 </div>
                                 <button
@@ -135,26 +106,16 @@ export const Amount = ({user, lan}) => {
                                 </button>
                                 <p className={"mt-3 text-dark fw-bold"}>{lan === "ENG" ? "Platform Record" : "Запись платформы"}</p>
                                 <div className="card text-bg-dark">
-                                    <img src={Apis.getPhoto + user ? user.vips.photoId : ""}
+                                    <img src={user.vips ? Apis.getPhoto + user.vips.photoId : ""}
                                          className="card-img"
                                          alt="1"/>
-                                </div>
-                            </div>
-                            <div className="card text-bg-dark">
-                                <img src={globe1} className="card-img" alt="1"/>
-                                <div className="card-img-overlay">
-                                    <h5 className="card-title text-light">{lan === "ENG" ? "ALFA mining pool" : "Пул для майнинга АЛЬФА"}</h5>
-                                    <p className="card-text">Staking osonroq</p>
-                                    <p className="card-text"><small className={"text-success"}>Osonlik bilan soqqa
-                                        qiling okalar</small>
-                                    </p>
                                 </div>
                             </div>
                             <div className="col-12 fw-bold text-center">
                                 {lan === "ENG" ? "list of levels" : "список уровней"}
                             </div>
                             {vips.map(item => (
-                                item.name !== user.vips ? user.vips.name : "" ? (
+                                item.id !== load ? user.vips ? user.vips.id : '' : '' ? (
                                     <div style={card} className={"p-2 m-2"}>
                                         <div className="d-flex align-items-center justify-content-center flex-column">
                                             <div className={"w-100 d-flex align-items-center justify-content-between"}>
@@ -198,29 +159,7 @@ export const Amount = ({user, lan}) => {
                                                          className={"w-25 text-end fw-bold"}>{item.shareRatio}%
                                                     </div>
                                                 </div>
-                                                <div className={"d-flex mb-1"}>
-                                                    <div style={{fontSize: '14px'}}
-                                                         className={"w-75"}>{lan === "ENG" ? "effective amount" : "эффективное количество"}</div>
-                                                    <div style={{fontSize: '14px'}}
-                                                         className={"w-25 text-end fw-bold"}>{item.effectiveEmount}
-                                                    </div>
-                                                </div>
-                                                <div className={"d-flex mb-1"}>
-                                                    <div style={{fontSize: '14px'}}
-                                                         className={"w-75"}>{lan === "ENG" ? "direct promotion of members" : "прямое продвижение членов"}
-                                                    </div>
-                                                    <div style={{fontSize: '14px'}}
-                                                         className={"w-25 text-end fw-bold"}>{item.directlyPromoteMembers}
-                                                    </div>
-                                                </div>
-                                                <div className={"d-flex mb-1"}>
-                                                    <div style={{fontSize: '14px'}}
-                                                         className={"w-75"}>{lan === "ENG" ? "second and third generation" : "второе и третье поколение"}
-                                                    </div>
-                                                    <div style={{fontSize: '14px'}}
-                                                         className={"w-25 text-end fw-bold"}>{item.secondThridGenerationMembers}
-                                                    </div>
-                                                </div>
+
                                                 <div className={"d-flex mb-1"}>
                                                     <div style={{fontSize: '14px'}}
                                                          className={"w-75"}>{lan === "ENG" ? "benefit" : "выгода"}
@@ -234,15 +173,7 @@ export const Amount = ({user, lan}) => {
                                                          className={"w-75"}>{lan === "ENG" ? "number of inspections per day" : "количество проверок в день"}
                                                     </div>
                                                     <div style={{fontSize: '14px'}}
-                                                         className={"w-25 text-end fw-bold"}>{item.metaGORobotsAvailablePerDay} {lan === "ENG" ? "time" : "время"}
-                                                    </div>
-                                                </div>
-                                                <div className={"d-flex mb-1"}>
-                                                    <div style={{fontSize: '14px'}}
-                                                         className={"w-75"}>{lan === "ENG" ? "team reward percentage" : "процент вознаграждения команды"}
-                                                    </div>
-                                                    <div style={{fontSize: '14px'}}
-                                                         className={"w-25 text-end fw-bold"}>{item.teamAward}%
+                                                         className={"w-25 text-end fw-bold"}>{item.alfaRobotsAvailablePerDay} {lan === "ENG" ? "time" : "время"}
                                                     </div>
                                                 </div>
                                             </div>

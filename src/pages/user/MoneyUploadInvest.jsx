@@ -35,7 +35,7 @@ export const MoneyUploadInvest = ({user, lan}) => {
             </div>
             <img src={three} alt=""/>
             <div className={"w-100"}>
-                <Link onClick={() => localStorage.setItem("__money__", "")} to={`/pool/item/${id}/${invId}`}
+                <Link onClick={() => localStorage.setItem("__money__", "")} to={`/amount`}
                       className={"btn btn-danger w-50"}>{lan === "ENG" ? 'Back' : "Назад"}</Link>
                 <button
                     onClick={() => validMoney()}

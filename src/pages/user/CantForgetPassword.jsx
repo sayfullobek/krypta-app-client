@@ -5,7 +5,7 @@ import {Apis} from "../../serverConnect/Apis";
 import {Button} from "reactstrap";
 import {error} from "../../utils/MyToast";
 
-export const CantForgetPassword = () => {
+export const CantForgetPassword = ({lan}) => {
     const [cantForgetPassword, setCantForgetPassword] = useState('')
     const [preCantForgetPassword, setPreCantForgetPassword] = useState('')
     const [seeCode2, setSeeCode2] = useState(false)
@@ -14,15 +14,15 @@ export const CantForgetPassword = () => {
     const navigate = useNavigate()
     const formArr = [
         {
-            label: 'Shaxsiy parolingizni kiriting',
-            placeholder: 'Iltimos Shaxsiy parolingizni kiriting',
+            label: lan === "ENG" ? "Enter your personal password" : 'Введите свой личный пароль',
+            placeholder: lan === "ENG" ? "Please enter your personal password" : 'Пожалуйста, введите ваш личный пароль',
             val: cantForgetPassword,
             setVal: setCantForgetPassword,
             see: seeCode2,
             setSee: setSeeCode2,
         }, {
-            label: 'Shaxsiy parolingizni qayta kiriting',
-            placeholder: 'Iltimos Shaxsiy parolingizni qayta kiriting',
+            label: lan === "ENG" ? "Re-enter your personal password" : 'Повторно введите свой личный пароль',
+            placeholder: lan === "ENG" ? "Please enter your personal password again" : 'Пожалуйста, введите ваш личный пароль еще раз',
             val: preCantForgetPassword,
             setVal: setPreCantForgetPassword,
             see: seeCode3,
@@ -31,10 +31,10 @@ export const CantForgetPassword = () => {
     ]
     const changePassword = async () => {
         if (cantForgetPassword.trim().length !== 6) {
-            return error("Shaxsiy parol 6ta belgidan iborat bo'lishi shart")
+            return error(lan === "ENG" ? "The personal password must be 6 characters long." : "Персональный пароль должен состоять из 6 символов.")
         }
         if (cantForgetPassword !== preCantForgetPassword) {
-            return error("Parol va tasdiqlash parolingizz teng bo'lishi shart")
+            return error(lan === "ENG" ? "Your password and confirmation password must match" : "Ваш пароль и пароль подтверждения должны совпадать")
         }
         const data = {
             cantForgetPassword
@@ -65,7 +65,8 @@ export const CantForgetPassword = () => {
                 </div>
             </div>
             <Button color={"primary"} onClick={() => changePassword()}
-                    style={{width: '96%', position: 'fixed', bottom: '0'}} className={"m-2"}>Saqlash</Button>
+                    style={{width: '96%', position: 'fixed', bottom: '0'}}
+                    className={"m-2"}>{lan === "ENG" ? "Save" : "Сохранять"}</Button>
         </div>
     )
 }

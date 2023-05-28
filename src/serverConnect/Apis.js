@@ -31,5 +31,7 @@ export const Apis = {
     aboutAppGet: '/about-the-app',
     investmentUser: '/investment-user',
     deposit: '/deposit',
+    history: '/get-me-history',
+    updateUserVip: '/vips/vip-in-user',
+    userProfitByVip: '/auth/profit-by-vip'
 }
-

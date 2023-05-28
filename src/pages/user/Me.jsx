@@ -5,12 +5,13 @@ import {error, success} from "../../utils/MyToast";
 import {Loader} from "../../component/Loader";
 import globe from '../../assets/lucky jet.jpg'
 
-export const Me = ({user, loading, lan}) => {
+export const Me = ({user, load, lan}) => {
     const token = localStorage.getItem("token")
     const navigete = useNavigate()
 
     const logoutHanlder = () => {
         localStorage.clear()
+        navigete("/")
         window.location.reload()
     }
 
@@ -107,7 +108,7 @@ export const Me = ({user, loading, lan}) => {
 
     return (
         <div style={{width: '98%', padding: '0 0 0 4%', backgroundColor: '#fffefe6b'}} className={"p-2"}>
-            {loading ? (
+            {load ? (
                 <>
                     <HeaderMe token={token} user={user}/>
                     <div style={{backgroundColor: 'white'}}>
@@ -115,7 +116,7 @@ export const Me = ({user, loading, lan}) => {
                              style={{fontSize: '30px', borderBottom: '1px solid #e7dfdf78'}}>
                             {token ? (
                                 <>
-                                    {user.wallet.nowMoney}
+                                    {load ? user.wallet !== undefined ? user.wallet.nowMoney : "0" : 0}
                                 </>
                             ) : (0)}
                             <div>
@@ -138,10 +139,6 @@ export const Me = ({user, loading, lan}) => {
                         </div>
                     </div>
 
-                    <div className="card text-bg-dark mt-3">
-                        <img src={globe} className="card-img" alt="1"
-                             onClick={() => error("Sizning mintaqangizda muammo mavjud")}/>
-                    </div>
                     {token ? (
                         <></>
                     ) : (

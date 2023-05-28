@@ -1,5 +1,6 @@
-import {Outlet, useLocation, useNavigate} from 'react-router-dom'
-import {TabBar} from "../component/tabbar/TabBar";
+import {Outlet, useLocation} from 'react-router-dom'
+import {NotFoundPages} from "../pages/NotFoundPages";
+import {NavBar} from "../component/navbar/NavBar";
 
 export const UserLayout = () => {
     const location = useLocation().pathname
@@ -7,12 +8,19 @@ export const UserLayout = () => {
 
     return (
         <div>
-            <main className={""} style={{backgroundColor: 'rgba(226, 222, 222, 0.42)'}}>
-                <section style={{overflow: 'auto'}} className="section section__height" id="home">
-                    <Outlet/>
-                </section>
-            </main>
-            <TabBar/>
+            {token ? (
+                <>
+                    <NavBar/>
+                    <main className={""} style={{backgroundColor: 'rgba(226, 222, 222, 0.42)'}}>
+                        <section style={{overflow: 'auto'}} className="section section__height" id="home">
+                            <Outlet/>
+                        </section>
+                    </main>
+                    {/*<TabBar/>*/}
+                </>
+            ) : (
+                <NotFoundPages/>
+            )}
         </div>
     )
 }

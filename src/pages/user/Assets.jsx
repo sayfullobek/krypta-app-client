@@ -36,14 +36,14 @@ export const Assets = ({user, lan, load}) => {
         getAll()
     }, [])
     return (
-        <div>
+        <div className={"w-100 d-flex align-items-center justify-content-center"}>
             {token ? (
                 loading ? (
                     <div className={"d-flex align-items-center justify-content-center flex-column"}
                          style={{width: "96%"}}>
                         <div className={"p-2"} style={{backgroundColor: 'white'}}>
                             <div className={"w-100 text-center fw-bold"} style={{fontSize: '30px'}}>
-                                {load ? user ? user.wallet.nowMoney : "0" : "0"}
+                                {load ? user.wallet !== undefined ? user.wallet.nowMoney : "0" : 0}
                                 <div className={"mt-2 text-primary"}>
                                     {lan === "ENG" ? 'My total assets USDT' : "Мои общие активы в USDT"}
                                 </div>

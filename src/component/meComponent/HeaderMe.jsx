@@ -1,7 +1,7 @@
 import {Link, useNavigate} from "react-router-dom";
 import './copy'
 import {success} from "../../utils/MyToast";
-import logo from '../../assets/alfa-logo.jpg'
+import logo from '../../assets/alfa-logo.png'
 
 export const HeaderMe = ({token, user, lan}) => {
     const navigate = useNavigate();

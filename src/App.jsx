@@ -10,6 +10,7 @@ import {Pools} from "./pages/user/Pools";
 import {Amount} from "./pages/user/Amount";
 import {Assets} from "./pages/user/Assets";
 import {Me} from "./pages/user/Me";
+import {Gildirak} from "./component/gildirak/Gildirak";
 import {Login} from "./pages/auth/Login";
 import {Profile} from "./pages/user/Profile";
 import {FeedBack} from "./pages/user/FeedBack";
@@ -32,6 +33,8 @@ import {InvestUser} from "./pages/user/InvestUser";
 import {HelpItem} from "./pages/user/HelpItem";
 import {MoneyUploadInvest} from "./pages/user/MoneyUploadInvest";
 import {MoneyUploadAgree} from "./pages/user/MoneyUploadAgree";
+import {History} from "./pages/user/history/History";
+import {UpdateVipInUser} from "./pages/user/UpdateVipInUser";
 
 function App() {
     const lan = localStorage.getItem("__lan__")
@@ -39,66 +42,94 @@ function App() {
     const [user, setUser] = useState({})
     const [wallet, setWallet] = useState({})
     const [loading, setLoading] = useState(false)
-    useEffect(() => {
-        const getMe = async () => {
-            try {
-                setUser(await getOneAbout(Apis.getMe, id, "data"))
-                setLoading(true)
-
-            } catch (err) {
-            }
+    const getMe = async () => {
+        try {
+            setUser(await getOneAbout(Apis.getMe, id, "data"))
+            setLoading(true)
+        } catch (err) {
         }
-        getMe()
+    }
+    useEffect(() => {
+        getMe().then(r => r)
     }, [])
+    const stylePrimary = {
+        maxWidth: '600px'
+    }
     return (
-        <>
-            <BrowserRouter>
-                <Routes>
-                    <Route path={"/"} element={<UserLayout/>}>
-                        <Route index element={<UserPanel user={user}/>}/>
-                        <Route path={"/pool"} element={<Pools/>}/>
-                        <Route path={"/amount"} element={<Amount user={user}/>}/>
-                        <Route path={"/assets"} element={<Assets user={user} load={loading}/>}/>
-                        <Route path={"/me"} element={<Me lan={lan} user={user} loading={loading}/>}/>
-                    </Route>
-                    <Route element={<MenyuLayout/>}>
-                        <Route path={"/notification"} element={<Notification/>}/>
-                        <Route path={"/notification/messages/:id"} element={<Message/>}/>
-                        <Route path={"/notification/messages/:id/get-message/:messageId"} element={<GetOneMessage/>}/>
-                        <Route path={"/pool/item/:id"} element={<PoolItem/>}/>
-                        <Route path={"/pool/item/:id/:invId"} element={<InvestUser user={user}/>}/>
-                        {/*<Route path={"/pool/item/:id/:invId/money-upload"} element={<MoneyUploadInvest user={user}/>}/>*/}
-                        {/*<Route path={"/pool/item/:id/:invId/money-upload/agree"}*/}
-                        {/*       element={<MoneyUploadAgree user={user}/>}/>*/}
-                        <Route path={"/auth/register"} element={<Register lan={lan}/>}/>
-                        <Route path={"/auth/register/user-info"} element={<UserInfo/>}/>
-                        <Route path={"/auth/login"} element={<Login/>}/>
-                        <Route path={"/auth/profile"} element={<Profile/>}/>
-                        {/*<Route path={"/lucky-jet"} element={<Gildirak/>}/>*/}
-                        <Route path={"/auth/feedback"} element={<FeedBack/>}/>
-                        <Route path={"/auth/security-settings"} element={<SecuritySettings/>}/>
-                        <Route path={"/auth/withdrawal-address"}
-                               element={<WithDrawal user={user} status={"address"}/>}/>
-                        <Route path={"/auth/switch-languages"} element={<SwitchLanguage/>}/>
-                        <Route path={"/auth/save-address"} element={<AddWithDrawalAddress status={"address"}/>}/>
-                        <Route path={"/auth/now-pay"} element={<NowPay/>}/>
-                        <Route path={"/auth/now-pay/pay-photo"} element={<PayPhoto user={user}/>}/>
-                        <Route path={"/auth/release-now"} element={<WithDrawal user={user} status={"pay"}/>}/>
-                        <Route path={"/auth/release-now/now-release"}
-                               element={<NowRelease user={user} loading={loading}/>}/>
-                        <Route path={"/auth/pay/save-address"} element={<AddWithDrawalAddress status={"pay"}/>}/>
-                        <Route path={"/auth/invite-friends"} element={<InviteFriends user={user}/>}/>
-                        <Route path={"/help"} element={<Help/>}/>
-                        <Route path={"/help/:helpId"} element={<HelpItem/>}/>
-                        <Route path={"/amount/money-upload"}
-                               element={<MoneyUploadInvest user={user}/>}/>
-                        <Route path={"/amount/money-upload/agree"}
-                               element={<MoneyUploadAgree user={user}/>}/>
-                    </Route>
-                    <Route path={"*"} element={<NotFoundPages/>}/>
-                </Routes>
-            </BrowserRouter>
-        </>
+        <div className={"media-primary"}>
+            {localStorage.length === 0 ? (
+                <>
+                    <BrowserRouter>
+                        <Routes>
+                            <Route path={"/"} element={<Register lan={lan}/>}/>
+                            <Route path={"/auth/register/user-info"} element={<UserInfo/>}/>
+                            <Route path={"/auth/login"} element={<Login/>}/>
+                        </Routes>
+                    </BrowserRouter>
+                </>
+            ) : (
+                <>
+                    {stylePrimary ? (
+                        <BrowserRouter>
+                            <Routes>
+                                <Route path={"/"} element={<UserLayout/>}>
+                                    <Route index
+                                           element={<UserPanel user={user} load={loading} lan={lan} getMe={getMe}/>}/>
+                                    <Route path={"/pool"} element={<Pools/>}/>
+                                    <Route path={"/amount"} element={<Amount user={user} load={loading} lan={lan}/>}/>
+                                    <Route path={"/assets"} element={<Assets user={user} load={loading} lan={lan}/>}/>
+                                    <Route path={"/me"} element={<Me lan={lan} user={user} load={loading}/>}/>
+                                    <Route path={"/me-history"} element={<History/>}/>
+                                </Route>
+                                <Route path={"/auth/register"} element={<Register lan={lan}/>}/>
+                                <Route path={"/auth/register/user-info"} element={<UserInfo/>}/>
+                                <Route path={"/auth/login"} element={<Login lan={lan}/>}/>
+                                <Route element={<MenyuLayout lan={lan}/>}>
+                                    <Route path={"/notification"} element={<Notification/>}/>
+                                    <Route path={"/notification/messages/:id"} element={<Message/>}/>
+                                    <Route path={"/notification/messages/:id/get-message/:messageId"}
+                                           element={<GetOneMessage/>}/>
+                                    <Route path={"/pool/item/:id"} element={<PoolItem/>}/>
+                                    <Route path={"/pool/item/:id/:invId"} element={<InvestUser user={user}/>}/>
+                                    <Route path={"/auth/profile"} element={<Profile lan={lan}/>}/>
+                                    <Route path={"/lucky-jet"} element={<Gildirak/>}/>
+                                    <Route path={"/auth/feedback"} element={<FeedBack/>}/>
+                                    <Route path={"/auth/security-settings"} element={<SecuritySettings lan={lan}/>}/>
+                                    <Route path={"/auth/withdrawal-address"}
+                                           element={<WithDrawal user={user} status={"address"} lan={lan}/>}/>
+                                    <Route path={"/auth/switch-languages"} element={<SwitchLanguage/>}/>
+                                    <Route path={"/auth/save-address"}
+                                           element={<AddWithDrawalAddress status={"address"}/>}/>
+                                    <Route path={"/auth/now-pay"} element={<NowPay/>}/>
+                                    <Route path={"/auth/now-pay/pay-photo"} element={<PayPhoto user={user}/>}/>
+                                    <Route path={"/auth/release-now"}
+                                           element={<WithDrawal user={user} status={"pay"} lan={lan}/>}/>
+                                    <Route path={"/auth/release-now/now-release"}
+                                           element={<NowRelease user={user} loading={loading}/>}/>
+                                    <Route path={"/auth/pay/save-address"}
+                                           element={<AddWithDrawalAddress status={"pay"} lan={lan}/>}/>
+                                    <Route path={"/auth/invite-friends"}
+                                           element={<InviteFriends user={user} lan={lan}/>}/>
+                                    <Route path={"/help"} element={<Help lan={lan}/>}/>
+                                    <Route path={"/help/:helpId"} element={<HelpItem/>}/>
+                                    <Route path={"/amount/money-upload"}
+                                           element={<MoneyUploadInvest user={user} lan={lan}/>}/>
+                                    <Route path={"/amount/money-upload/agree"}
+                                           element={<MoneyUploadAgree user={user} lan={lan}/>}/>
+                                    <Route path={"/change-vip-by-user/:id"}
+                                           element={<UpdateVipInUser user={user} lan={lan} load={loading}/>}/>
+                                </Route>
+                                <Route path={"*"} element={<NotFoundPages/>}/>
+                            </Routes>
+                        </BrowserRouter>
+                    ) : (
+                        <div>
+
+                        </div>
+                    )}
+                </>
+            )}
+        </div>
     )
 }
 

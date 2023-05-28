@@ -4,7 +4,7 @@ import {Save} from "../../serverConnect/service/Service";
 import {Apis} from "../../serverConnect/Apis";
 import {useNavigate} from "react-router-dom";
 
-export const SecuritySettings = () => {
+export const SecuritySettings = ({lan}) => {
     const [oldPassword, setOldPassword] = useState('')
     const [newPassword, setNewPassword] = useState('')
     const [newPrePassword, setNewPrePassword] = useState('')
@@ -15,22 +15,22 @@ export const SecuritySettings = () => {
     const navigate = useNavigate()
     const formArr = [
         {
-            label: 'eski parolingizni kiriting',
-            placeholder: 'Iltimos eski parolingizni kiriting',
+            label: lan === "ENG" ? "enter your old password" : 'введите свой старый пароль',
+            placeholder: lan === "ENG" ? "Please enter your old password" : 'Пожалуйста, введите свой старый пароль',
             val: oldPassword,
             setVal: setOldPassword,
             see: seeCode,
             setSee: setSeeCode,
         }, {
-            label: 'yangi parolingizni kiriting',
-            placeholder: 'Iltimos yangi parolingizni kiriting',
+            label: lan === "ENG" ? "Enter a new password" : 'введите новый пароль',
+            placeholder: lan === "ENG" ? "Please enter a new password" : 'Пожалуйста, введите новый пароль',
             val: newPassword,
             setVal: setNewPassword,
             see: seeCode2,
             setSee: setSeeCode2,
         }, {
-            label: 'yangi parolingizni qayta kiriting',
-            placeholder: 'Iltimos yangi parolingizni qayta kiriting',
+            label: lan === "ENG" ? "re-enter the new password" : 'повторно введите новый пароль',
+            placeholder: lan === "ENG" ? "Please enter your new password again" : 'Пожалуйста, введите новый пароль еще раз',
             val: newPrePassword,
             setVal: setNewPrePassword,
             see: seeCode3,
@@ -65,7 +65,8 @@ export const SecuritySettings = () => {
                 </div>
             </div>
             <Button color={"primary"} onClick={() => changePassword()}
-                    style={{width: '96%', position: 'fixed', bottom: '0'}} className={"m-2"}>Saqlash</Button>
+                    style={{width: '96%', position: 'fixed', bottom: '0'}}
+                    className={"m-2"}>{lan === "ENG" ? "Save" : "Сохранять"}</Button>
         </div>
     )
 }

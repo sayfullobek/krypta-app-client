@@ -54,15 +54,19 @@ export const uploadPhotoId = async (data, id) => {
 }
 
 const saveLocalStorage = (res, navigate, status) => {
-    localStorage.setItem('__id__', status === "login" ? res.data.user.id : res.data.getLogin.user.id)
-    localStorage.setItem('token', status === "login" ? res.data.resToken.body : res.data.getLogin.resToken.body)
-    localStorage.setItem('tokenType', status === "login" ? res.data.resToken.tokenType : res.data.getLogin.resToken.tokenType)
-    localStorage.setItem('firstName', status === "login" ? res.data.user.firstName : res.data.getLogin.user.firstName)
-    localStorage.setItem('lastName', status === "login" ? res.data.user.lastName : res.data.getLogin.user.lastName)
-    localStorage.setItem('phoneNumber', status === "login" ? res.data.user.phoneNumber : res.data.getLogin.user.phoneNumber)
-    localStorage.setItem('email', status === "login" ? res.data.user.email : res.data.getLogin.user.email)
-    localStorage.setItem('referralCode', status === "login" ? res.data.user.referralCode : res.data.getLogin.user.referralCode)
-    success('muvaffaqiyatli')
-    navigate(status === "login" ? "/me" : "/auth/register/user-info")
-    window.location.reload()
+    if (res.data === "") {
+        error("error")
+    } else {
+        localStorage.setItem('__id__', status === "login" ? res.data.user.id : res.data.getLogin.user.id)
+        localStorage.setItem('token', status === "login" ? res.data.resToken.body : res.data.getLogin.resToken.body)
+        localStorage.setItem('tokenType', status === "login" ? res.data.resToken.tokenType : res.data.getLogin.resToken.tokenType)
+        localStorage.setItem('firstName', status === "login" ? res.data.user.firstName : res.data.getLogin.user.firstName)
+        localStorage.setItem('lastName', status === "login" ? res.data.user.lastName : res.data.getLogin.user.lastName)
+        localStorage.setItem('phoneNumber', status === "login" ? res.data.user.phoneNumber : res.data.getLogin.user.phoneNumber)
+        localStorage.setItem('email', status === "login" ? res.data.user.email : res.data.getLogin.user.email)
+        localStorage.setItem('referralCode', status === "login" ? res.data.user.referralCode : res.data.getLogin.user.referralCode)
+        success('muvaffaqiyatli')
+        navigate(status === "login" ? "/me" : "/auth/register/user-info")
+        window.location.reload()
+    }
 }

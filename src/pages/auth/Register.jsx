@@ -67,22 +67,16 @@ export const Register = (lan) => {
         await RegisterHandler(data, navigate)
     }
 
-
     return (
         <div>
-            <section className="container forms" style={{height: '80vh'}}>
+            <section className="container forms" style={{height: '100vh'}}>
                 <div className="form login">
+                    <div className={"w-100 d-flex align-items-center justify-content-end mb-5"}><Link
+                        className={"btn btn-primary text-light"} to={"/auth/switch-languages"}>switch language</Link>
+                    </div>
                     <div className="form-content">
                         <header>{lan === "UZB" ? "Ro'yxatdan o'tish" : lan === "ENG" ? "Sign up" : "Зарегистрироваться"}</header>
                         <form>
-                            <div className="d-flex align-items-center justify-content-center">
-                                <button type={"button"} onClick={() => setUserName("phone")}
-                                        className={username === "phone" ? "btn btn-primary" : "btn"}>number
-                                </button>
-                                <button type={"button"} className={username === "email" ? "btn btn-primary" : "btn"}
-                                        onClick={() => setUserName("email")}>email
-                                </button>
-                            </div>
                             {username === "phone" ? (
                                 <div className="field input-field">
                                     <input type="number"
@@ -127,17 +121,26 @@ export const Register = (lan) => {
                                 <i className={seePreCode ? "bi bi-eye eye-icon" : 'bi bi-eye-slash eye-icon'}
                                    onClick={() => setSeePreCode(!seePreCode)}/>
                             </div>
-                            <div className="form-link">
-                                <Link to={"/auth/login"}
-                                      className="forgot-pass">{lan === "UZB" ? 'kirish' : lan === "ENG" ? "Login" : "доступ"}</Link>
-                            </div>
                             <div className="field button-field">
-                                <button type={"button"}
+
+                            </div>
+                            <div className="row d-flex align-items-center justify-content-center">
+                                <button onClick={() => navigate("/auth/login")} style={{width: '96%'}}
+                                        className="btn btn-primary text-light">{lan === "UZB" ? 'kirish' : lan === "ENG" ? "Login" : "доступ"}</button>
+                            </div>
+                            <div className="row d-flex align-items-center justify-content-center mt-3">
+                                <button type={"button"} style={{width: '96%'}}
                                         className={referralCode.length === 0 ? "btn btn-primary disabled" : "btn btn-primary text-light"}
                                         onClick={() => registerHandler()}>{lan === "UZB" ? "Ro'yxatdan O'tish" : lan === "ENG" ? "Sign up" : "Зарегистрироваться"}
                                 </button>
                             </div>
                         </form>
+                        <div
+                            className={"w-100 d-flex align-items-center justify-content-center mt-5"}>
+                            <button
+                                className={"btn"}>download app
+                            </button>
+                        </div>
                     </div>
                 </div>
             </section>
