@@ -116,7 +116,7 @@ export const Me = ({user, load, lan}) => {
                              style={{fontSize: '30px', borderBottom: '1px solid #e7dfdf78'}}>
                             {token ? (
                                 <>
-                                    {load ? user.wallet !== undefined ? user.wallet.nowMoney : "0" : 0}
+                                    {load ? user.wallet !== undefined ? user.wallet.nowMoney.toString().substr(0, 10) : "0" : 0}
                                 </>
                             ) : (0)}
                             <div>

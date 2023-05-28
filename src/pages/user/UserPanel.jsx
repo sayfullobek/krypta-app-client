@@ -16,6 +16,7 @@ export const UserPanel = ({user, load, lan, getMe}) => {
     const navigate = useNavigate();
     const [money, setMoney] = useState(0)
     const [userFriendProfit, setUserFriendProfit] = useState('')
+    const [nowMoney, setNowMoney] = useState('')
 
     const getAll = async () => {
         try {
@@ -44,6 +45,7 @@ export const UserPanel = ({user, load, lan, getMe}) => {
         }
         await getMe()
         setUserFriendProfit(load ? user.wallet ? user.wallet.friendsProfit + " USDT" : 0 : 0)
+        setNowMoney(load ? user.wallet ? user.wallet.nowMoney + " USDT" : 0 : 0)
     }
     useEffect(() => {
         // if (load ? user.wallet ? user.wallet.theMoneyHeInvested : 0 : 0 !== 0) {
@@ -80,7 +82,9 @@ export const UserPanel = ({user, load, lan, getMe}) => {
                                     <div
                                         className={"w-100 d-flex align-items-center justify-content-between flex-column"}>
                                         <div className={"w-100 mt-2 mb-2"}><h3
-                                            className={"text-success fw-bold text-center"}>{load ? user.wallet !== undefined ? user.wallet.nowMoney.toString().substr(0, 12) : "0" : 0}
+                                            className={"text-success fw-bold text-center"}>
+                                            {load ? user.wallet !== undefined ? user.wallet.nowMoney.toString().substr(0, 12) : "0" : 0}
+                                            {/*{nowMoney}*/}
                                             $</h3>
                                         </div>
                                         <div className={"d-flex w-100 align-items-center justify-content-between"}>
