@@ -10,7 +10,7 @@ import {Pools} from "./pages/user/Pools";
 import {Amount} from "./pages/user/Amount";
 import {Assets} from "./pages/user/Assets";
 import {Me} from "./pages/user/Me";
-import {Gildirak} from "./component/gildirak/Gildirak";
+// import {Gildirak} from "./component/gildirak/Gildirak";
 import {Login} from "./pages/auth/Login";
 import {Profile} from "./pages/user/Profile";
 import {FeedBack} from "./pages/user/FeedBack";
