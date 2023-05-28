@@ -76,7 +76,7 @@ export const UserPanel = ({user, load, lan, getMe}) => {
                 <>
                     {user ? (
                         <>
-                            <PrimaryModal lan={lan}/>
+                            {/*<PrimaryModal lan={lan}/>*/}
                             <div className="card p-2 pb-4">
                                 <div className={"w-100"}>
                                     <div
