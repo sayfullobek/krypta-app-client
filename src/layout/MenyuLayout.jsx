@@ -11,7 +11,7 @@ export const MenyuLayout = ({lan}) => {
             <HeaderUser text={lan === "ENG" ? "go to home page" : "вернуться на домашнюю страницу"}
                         link={location === "/auth/profile" ? "/me" : location === "/auth/withdrawal-address" ? "/me" : location === "/auth/security-settings" ? "/me" : location === "/auth/feedback" ? "/me" : location === "/auth/switch-languages" ? "/me" : location === "/auth/save-address" ? "/auth/withdrawal-address" : location === "/auth/now-pay/pay-photo" ? "/auth/now-pay" : location === "/notification/messages/:id" ? "/notification" : "/"}/>
             <div className="section__height"
-                 style={{backgroundColor: 'rgba(226, 222, 222, 0.42)'}}>
+                 style={{overflow: 'auto', backgroundColor: 'rgba(226, 222, 222, 0.42)'}}>
                 <Outlet/>
             </div>
         </div>
