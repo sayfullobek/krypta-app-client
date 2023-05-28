@@ -8,6 +8,7 @@ import {Link, useNavigate} from "react-router-dom";
 import {UserVipList} from "./UserVipList";
 import {ApiController} from "../../serverConnect/ApiController";
 import {isSuccess} from "../../handlers/auth";
+import {success} from "../../utils/MyToast";
 
 export const UserPanel = ({user, load, lan, getMe}) => {
     const [aboutApp, setAboutApp] = useState({})
@@ -59,6 +60,13 @@ export const UserPanel = ({user, load, lan, getMe}) => {
 
     const [loading, setLoading] = useState(false)
     const [coin, setCoins] = useState([])
+
+    const copyToClipboard = () => {
+        let input;
+        input = document.getElementById('copyId').defaultValue;
+        navigator.clipboard.writeText(input).then(r => r);
+        success("nusxalandi")
+    }
 
     return (
         <div className={"p-2"} style={{height: '100vh'}}>
@@ -149,14 +157,14 @@ export const UserPanel = ({user, load, lan, getMe}) => {
                                     }}>
                                         <p className={"text-secondary"} style={{overflow: 'hidden'}}>
                                             {lan === "ENG" ? "Your link" : "Ваша ссылка"}
-                                            <h5>{load ? user.wallet ? `http://localhost:5173/auth/register?referralCode=${user.referralCode}` : 0 : 0}</h5>
+                                            <h5 defaultValue={load ? user.wallet ? `https://main--lustrous-hamster-630dc1.netlify.app/auth/register?referralCode=${user.referralCode}` : 0 : 0}>{load ? user.wallet ? `http://localhost:5173/auth/register?referralCode=${user.referralCode}` : 0 : 0}</h5>
                                         </p>
                                     </div>
                                     <div className={"mt-3"} style={{
                                         width: '98%',
                                     }}>
-                                        <button
-                                            className={"btn btn-success w-100"}>{lan === "ENG" ? "Copy" : "Копировать"}</button>
+                                        <button onClick={() => copyToClipboard()}
+                                                className={"btn btn-success w-100"}>{lan === "ENG" ? "Copy" : "Копировать"}</button>
                                     </div>
                                 </div>
                             </div>
@@ -201,7 +209,7 @@ export const UserPanel = ({user, load, lan, getMe}) => {
                                     <div style={{fontSize: '12px'}}
                                          className={"fw-bold"}>{lan === "ENG" ? "Number of users" : "Количество пользователей"}
                                     </div>
-                                    <div>
+                                    <div style={{fontSize: '10px'}}>
                                         {aboutApp.howMuchMoneyApp} USDT
                                     </div>
                                 </div>

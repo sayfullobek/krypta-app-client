@@ -11,7 +11,7 @@ export const UserLayout = () => {
             {token ? (
                 <>
                     <NavBar/>
-                    <main className={""} style={{backgroundColor: 'rgba(226, 222, 222, 0.42)'}}>
+                    <main className={""} style={{overflow: 'auto', backgroundColor: 'rgba(226, 222, 222, 0.42)'}}>
                         <section style={{overflow: 'auto'}} className="section section__height" id="home">
                             <Outlet/>
                         </section>

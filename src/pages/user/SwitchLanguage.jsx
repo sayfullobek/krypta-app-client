@@ -6,8 +6,8 @@ export const SwitchLanguage = () => {
     const navigate = useNavigate()
     const [lan, setLan] = useState(localStorage.getItem("__lan__"))
     const lanArr = [
-        {name: "Inglizcha", val: "ENG"},
-        {name: "Ruscha", val: "RUS"},
+        {name: "English", val: "ENG"},
+        {name: "Русский", val: "RUS"},
         {name: "Türkçe", val: "TURK"},
         {name: "қазақ", val: "KAZ"},
     ]
@@ -34,7 +34,7 @@ export const SwitchLanguage = () => {
                 ))}
             </div>
             <Button color={"primary"} onClick={() => changeLan(lan)} style={{width: '96%'}}>
-                O'zgarishni Saqlash
+                {lan === "ENG" ? "Save the change" : "Сохранить изменение"}
             </Button>
         </div>
     )

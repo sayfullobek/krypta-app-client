@@ -31,7 +31,7 @@ export const UserVipList = ({vips, lan, balance, userVip}) => {
                         <div className={"col-5 d-flex align-items-center justify-content-between"}>
                             <div>
                                 <p className={"m-0"}>{lan === "ENG" ? "device price" : "цена устройства"}</p>
-                                <div className={"fw-bold"} style={{fontSize: '18px'}}>
+                                <div className={"fw-bold"} style={{fontSize: '14px'}}>
                                     {item.minQuantifyAmount}-{item.maxQuantifyAmount}$
                                 </div>
                             </div>
