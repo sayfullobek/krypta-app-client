@@ -16,7 +16,7 @@ export const UserLayout = () => {
                         <section style={{height: '92vh', overflow: 'auto'}} className="section w-100
                         {/*section__height*/}
                         "
-                                 id="home">
+                        >
                             <Outlet/>
                         </section>
                     </main>
