@@ -71,7 +71,7 @@ export const UserPanel = ({user, load, lan, getMe}) => {
     }
 
     return (
-        <div className={"p-2"} style={{height: '100vh'}}>
+        <div className={"p-2"}>
             {loading ? (
                 <>
                     {user ? (
