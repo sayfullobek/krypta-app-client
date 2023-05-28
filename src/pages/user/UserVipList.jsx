@@ -3,6 +3,7 @@ import {useNavigate} from 'react-router-dom'
 
 export const UserVipList = ({vips, lan, balance, userVip}) => {
     const navigate = useNavigate()
+    console.log(userVip)
     return (
         <div className={"w-100 d-flex align-items-center justify-content-center flex-column"}>
             {vips.map(item => (
@@ -37,7 +38,7 @@ export const UserVipList = ({vips, lan, balance, userVip}) => {
                             </div>
                         </div>
                         <div className={"col-7 d-flex align-items-center justify-content-end"}>
-                            {userVip.id === item.id ? (
+                            {userVip !== null ? userVip.id === item.id : "" ? (
                                 <button
                                     className={"btn btn-success fw-bold"}
                                     style={{borderRadius: '16px'}}>{lan === "ENG" ? "purchased" : "купил"}
