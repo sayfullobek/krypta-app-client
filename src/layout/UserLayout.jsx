@@ -12,7 +12,7 @@ export const UserLayout = () => {
                 <div className={"w-100 d-flex align-items-center justify-content-center flex-column"}>
                     <NavBar/>
                     <main className={""}
-                          style={{height: '88vh', overflow: 'auto', backgroundColor: 'rgba(226, 222, 222, 0.42)'}}>
+                          style={{height: '92vh', overflow: 'auto', backgroundColor: 'rgba(226, 222, 222, 0.42)'}}>
                         <section style={{width: '100%', overflow: 'auto'}} className="section section__height"
                                  id="home">
                             <Outlet/>
