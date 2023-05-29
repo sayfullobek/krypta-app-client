@@ -8,7 +8,9 @@ import {Link, useNavigate} from "react-router-dom";
 import {UserVipList} from "./UserVipList";
 import {ApiController} from "../../serverConnect/ApiController";
 import {isSuccess} from "../../handlers/auth";
+import copy from "copy-to-clipboard";
 import {success} from "../../utils/MyToast";
+import {Button, Container, Heading, Input1, Input2} from "./StyleCopy";
 
 export const UserPanel = ({user, load, lan, getMe}) => {
     const [aboutApp, setAboutApp] = useState({})
@@ -63,11 +65,12 @@ export const UserPanel = ({user, load, lan, getMe}) => {
     const [loading, setLoading] = useState(false)
     const [coin, setCoins] = useState([])
 
+    const [copyText, setCopyText] = useState('');
+
     const copyToClipboard = () => {
-        let input;
-        input = document.getElementById('copyId').defaultValue;
-        navigator.clipboard.writeText(input).then(r => r);
-        success("nusxalandi")
+        setCopyText(load ? user.wallet ? `https://lustrous-hamster-630dc1.netlify.app/auth/register?referralCode=${user.referralCode}` : 0 : 0);
+        copy(load ? user.wallet ? `https://lustrous-hamster-630dc1.netlify.app/auth/register?referralCode=${user.referralCode}` : 0 : 0);
+        success("Copied")
     }
 
     return (
@@ -163,14 +166,19 @@ export const UserPanel = ({user, load, lan, getMe}) => {
                                     }}>
                                         <p className={"text-secondary"} style={{overflow: 'hidden'}}>
                                             {lan === "ENG" ? "Your link" : "Ваша ссылка"}
-                                            <h5 defaultValue={load ? user.wallet ? `https://main--lustrous-hamster-630dc1.netlify.app/auth/register?referralCode=${user.referralCode}` : 0 : 0}>{load ? user.wallet ? `http://localhost:5173/auth/register?referralCode=${user.referralCode}` : 0 : 0}</h5>
                                         </p>
+                                        <Input1 className={"text-secondary"}
+                                                type="text"
+                                                value={load ? user.wallet ? `https://lustrous-hamster-630dc1.netlify.app/auth/register?referralCode=${user.referralCode}` : 0 : 0}
+                                            // onChange={handleCopyText}
+                                                placeholder='Enter the text you want to copy'/>
                                     </div>
                                     <div className={"mt-3"} style={{
                                         width: '98%',
                                     }}>
-                                        <button onClick={() => copyToClipboard()}
-                                                className={"btn btn-success w-100"}>{lan === "ENG" ? "Copy" : "Копировать"}</button>
+                                        <button
+                                            onClick={() => copyToClipboard()}
+                                            className={"btn btn-success w-100"}>{lan === "ENG" ? "Copy" : "Копировать"}</button>
                                     </div>
                                 </div>
                             </div>

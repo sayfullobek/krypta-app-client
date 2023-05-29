@@ -17,6 +17,7 @@
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "axios": "^1.4.0",
     "bootstrap": "^5.2.3",
+    "copy-to-clipboard": "^3.3.3",
     "expo-constants": "^14.2.1",
     "loader-utils": "^3.2.1",
     "react": "^18.2.0",
@@ -34,7 +35,8 @@
     "react-use": "^17.4.0",
     "reactstrap": "^9.1.9",
     "sass": "^1.62.1",
-    "scss": "^0.2.4"
+    "scss": "^0.2.4",
+    "styled-components": "^5.3.11"
   },
   "devDependencies": {
     "@types/react": "^18.0.28",

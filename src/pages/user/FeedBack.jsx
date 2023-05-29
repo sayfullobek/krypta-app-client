@@ -6,25 +6,31 @@ import {Save} from "../../serverConnect/service/Service";
 import {Apis} from "../../serverConnect/Apis";
 import {useNavigate} from "react-router-dom";
 
-export const FeedBack = () => {
+export const FeedBack = ({lan}) => {
     const [feedbackName, setFeedbackName] = useState('')
     const [information, setInformation] = useState('')
     const userId = localStorage.getItem("__id__")
     const navigate = useNavigate()
 
     const nameArr = [
-        {name: "Dasturiy ta'minot funksiyasi muammosi", val: 'PROGRAMMING_ERROR'},
-        {name: "Shikoyat va takliflar", val: 'COMPLAINTS_AND_SUGGESTIONS'},
-        {name: "Sahifaning ishdan chiqishi", val: 'PAGE_DOWN'},
-        {name: "Boshqa", val: 'OTHER'},
+        {
+            name: lan === "ENG" ? "Software functionality problem" : "Проблема с функциональностью программного обеспечения",
+            val: 'PROGRAMMING_ERROR'
+        },
+        {
+            name: lan === "ENG" ? "Complaints and suggestions" : "Жалобы и предложения",
+            val: 'COMPLAINTS_AND_SUGGESTIONS'
+        },
+        {name: lan === "ENG" ? "Page crash" : "Сбой страницы", val: 'PAGE_DOWN'},
+        {name: lan === "ENG" ? "Другой" : "Other", val: 'OTHER'},
     ]
 
     const sendFeedback = async () => {
         if (stringDataIf(feedbackName)) {
-            return error("Iltimos shikoyat yoki taklif turini tanlang")
+            return error(lan === "ENG" ? "Please select the type of complaint or suggestion" : "Пожалуйста, выберите тип жалобы или предложения")
         }
         if (stringDataIf(information)) {
-            return error("Iltimos shikoyat yoki taklifingizni kiriting")
+            return error(lan === "ENG" ? "Please enter your complaint or suggestion" : "Пожалуйста, введите вашу жалобу или предложение")
         }
         const data = {
             feedbackName, information, userId
@@ -55,12 +61,13 @@ export const FeedBack = () => {
                     <textarea className="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
                               style={{height: "16vh", border: 'none'}} value={information}
                               onChange={e => setInformation(e.target.value)}/>
-                    <label htmlFor="floatingTextarea2">Iltimos taklif yoki shikoyatingizni kiriting</label>
+                    <label
+                        htmlFor="floatingTextarea2">{lan === "ENG" ? "Please enter your suggestion or complaint" : "Пожалуйста, введите ваше предложение или жалобу"}</label>
                 </div>
             </div>
             <Button color={"primary"} onClick={() => sendFeedback()} className={"position-fixed"}
                     style={{width: '90%', bottom: '15px'}}>
-                Yuborish
+                {lan === "ENG" ? "Sending" : "Отправка"}
             </Button>
         </div>
     )

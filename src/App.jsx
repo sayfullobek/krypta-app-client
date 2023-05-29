@@ -94,7 +94,7 @@ function App() {
                                     <Route path={"/pool/item/:id"} element={<PoolItem/>}/>
                                     <Route path={"/pool/item/:id/:invId"} element={<InvestUser user={user}/>}/>
                                     <Route path={"/auth/profile"} element={<Profile lan={lan}/>}/>
-                                    <Route path={"/auth/feedback"} element={<FeedBack/>}/>
+                                    <Route path={"/auth/feedback"} element={<FeedBack lan={lan}/>}/>
                                     <Route path={"/auth/security-settings"} element={<SecuritySettings lan={lan}/>}/>
                                     <Route path={"/auth/withdrawal-address"}
                                            element={<WithDrawal user={user} status={"address"} lan={lan}/>}/>
