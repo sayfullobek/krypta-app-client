@@ -37,14 +37,20 @@ export const Me = ({user, load, lan}) => {
             isHidden: true
         },
         {
-            name: 'Security Settings',
+            name: lan === "ENG" ? "Security settings" : "Настройки безопасности",
             icon: 'bi bi-shield-check',
             link: "/auth/security-settings",
             type: "auto",
             isHidden: !!token
         },
         {type: "none", isHidden: true},
-        {name: 'Feedback', icon: 'bi bi-envelope-open', link: "/auth/feedback", type: "auto", isHidden: !!token},
+        {
+            name: lan === "ENG" ? "feedback" : "обратная связь",
+            icon: 'bi bi-envelope-open',
+            link: "/auth/feedback",
+            type: "auto",
+            isHidden: !!token
+        },
         {
             name:
                 lan === "ENG" ? "Switch Language" : "Переключить язык",
