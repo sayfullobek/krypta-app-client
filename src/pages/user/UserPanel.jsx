@@ -70,7 +70,7 @@ export const UserPanel = ({user, load, lan, getMe}) => {
     const copyToClipboard = () => {
         setCopyText(load ? user.wallet ? `https://lustrous-hamster-630dc1.netlify.app/auth/register?referralCode=${user.referralCode}` : 0 : 0);
         copy(load ? user.wallet ? `https://lustrous-hamster-630dc1.netlify.app/auth/register?referralCode=${user.referralCode}` : 0 : 0);
-        success("Copied")
+        success(lan === "ENG" ? "Copied" : "Скопировано")
     }
 
     return (
